@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MR Performance Visualizer" Height="450" Width="1000">
     <Grid>
-        <Label x:Name="label" Content="CPU Utilization" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="87"/>
+        <Label x:Name="label" Content="CPU Utilization" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="91"/>
         <Label x:Name="label1" Content="Memory Utilization" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label2" Content="Latest Events&#xD;&#xA;" HorizontalAlignment="Left" Margin="450,10,0,0" VerticalAlignment="Top" Height="26"/>
         <Label x:Name="label3" Content="System Status&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="739,10,0,0" VerticalAlignment="Top" Height="26"/>
