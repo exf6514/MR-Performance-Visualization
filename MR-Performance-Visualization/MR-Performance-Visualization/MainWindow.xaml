@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MR_Performance_Visualization"
         mc:Ignorable="d"
-        Title="MR Performance Visualizer" Height="450" Width="800">
+        Title="MR Performance Visualizer" Height="450" Width="1000">
     <Grid>
+        <Label x:Name="label" Content="CPU Utilization" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Memory Utilization" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Latest Events&#xD;&#xA;" HorizontalAlignment="Left" Margin="450,10,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label x:Name="label3" Content="System Status&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="739,10,0,0" VerticalAlignment="Top" Height="26"/>
         
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="369" Margin="450,41,0,0" VerticalAlignment="Top" Width="277">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+            <ListViewItem Content="ListViewItem1" Margin="0"/>
+            <ListViewItem Content="ListViewItem2" Margin="0"/>
+            <ListViewItem Content="ListViewItem3" Margin="0"/>
+            <ListViewItem Content="ListViewItem4" Margin="0"/>
+            <ListViewItem Content="ListViewItem5" Margin="0"/>
+            <ListViewItem Content="ListViewItem6" Margin="0"/>
+        </ListView>
+
     </Grid>
 </Window>
