@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace MR_Performance_Visualization
 {
@@ -23,21 +25,40 @@ namespace MR_Performance_Visualization
         public MainWindow()
         {
             InitializeComponent();
+
+            SeriesCollection SeriesCollection = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Values = new ChartValues<double> { 3, 5, 7, 4 }
+                },
+                new ColumnSeries
+                {
+                    Values = new ChartValues<decimal> { 5, 6, 4, 7 }
+                }
+            };
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void PowerButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Shutdown();
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PowerGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            DragMove();
         }
 
-        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            int index = ListViewMenu.SelectedIndex;
+            MoveCursorMenu(index);
+        }
 
+        private void MoveCursorMenu(int index)
+        {
+            MenuActiveItemIndicator.OnApplyTemplate();
+            ActiveIndicator.Margin = new Thickness(0, (100 + (60 * index)), 0, 0);
         }
     }
 }
