@@ -39,6 +39,8 @@ namespace MR_Performance_Visualization
                     Values = new ChartValues<decimal> { 5, 6, 4, 7 }
                 }
             };
+
+            _mainFrame.NavigationService.Navigate(new MemoryUsagePage());
         }
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -98,12 +100,37 @@ namespace MR_Performance_Visualization
         {
             int index = ListViewMenu.SelectedIndex;
             MoveCursorMenu(index);
+
+            //navigate to page
+            NavigateToPage(index);
         }
 
         private void MoveCursorMenu(int index)
         {
             MenuActiveItemIndicator.OnApplyTemplate();
             ActiveIndicator.Margin = new Thickness(0, (100 + (60 * index)), 0, 0);
+        }
+
+        private void NavigateToPage(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    _mainFrame.NavigationService.Navigate(new MemoryUsagePage());
+                    break;
+                case 1:
+                    _mainFrame.NavigationService.Navigate(new CPUUsagePage());
+                    break;
+                case 2:
+                    _mainFrame.NavigationService.Navigate(new ProcessesPage());
+                    break;
+                case 3:
+                    _mainFrame.NavigationService.Navigate(new QueryBuilderPage());
+                    break;
+                default:
+                    Console.WriteLine("Default case");
+                    break;
+            }
         }
     }
 }
