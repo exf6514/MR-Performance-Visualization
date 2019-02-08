@@ -8,39 +8,7 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="MR Performance Visualizer" Height="600" Width="1024" WindowStartupLocation="CenterScreen" VerticalAlignment="Bottom" Padding="10" Grid.IsSharedSizeScope="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" WindowStyle="None" Background="White" ResizeMode="NoResize">
-    <Grid Background="#FFEEEEEE" MouseDown="PowerGrid_MouseDown">
-        <StackPanel VerticalAlignment="Top">
-            <Grid Background="#FF0023FF" Height="10"></Grid>
-            <Grid Margin="5">
-                <!-- left aligned part of toolbar-->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="250 0">
-                    <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Margin="5 0" Click="LoadButton_Click">
-                        <materialDesign:PackIcon Kind="FileUpload"/>
-                    </Button>
-                    <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Margin="5 0">
-                        <materialDesign:PackIcon Kind="FileDownload"/>
-                    </Button>
-                </StackPanel>
-                <!-- right aligned part of toolbar-->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0">
-                    <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Margin="5 0" Foreground="Gray">
-                        <materialDesign:PackIcon Kind="HelpOutline"/>
-                    </Button>
-
-                    <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Margin="5 0" Foreground="Gray">
-                        <materialDesign:PackIcon Kind="Settings"/>
-                    </Button>
-                    <Button x:Name="PowerButton" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Margin="5 0" Foreground="Gray" Click="PowerButton_Click">
-                        <materialDesign:PackIcon Kind="Power"/>
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </StackPanel>
-        <Grid Margin="250 55 0 0" Background="White">
-            <Grid x:Name="MainContentGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="500">
-                <lvc:CartesianChart Series="{Binding SeriesCollection}" Height="400" />
-            </Grid>
-        </Grid>
+    <Grid MouseDown="PowerGrid_MouseDown">
         <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
             <materialDesign:TransitioningContent x:Name="MenuActiveItemIndicator" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
                 <Grid x:Name="ActiveIndicator" Margin="0 100 0 0" Background="Blue" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
@@ -66,5 +34,61 @@
                 </ListViewItem>
             </ListView>
         </Grid>
+        <StackPanel VerticalAlignment="Top">
+            <Grid Background="#FF0023FF" Height="10"></Grid>
+            <Border BorderBrush="#FFEEEEEE" BorderThickness="0 0 0 1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,5">
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Foreground="White">MRI Performance Visualizer</TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1" Background="#FFEEEEEE">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,10,5" Grid.Column="1">
+                            <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray">
+                                <materialDesign:PackIcon Kind="HelpOutline"/>
+                            </Button>
+                            <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Foreground="Gray">
+                                <materialDesign:PackIcon Kind="Settings"/>
+                            </Button>
+                            <Button x:Name="PowerButton" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Margin="10 0 0 0" Foreground="Red" Click="PowerButton_Click">
+                                <materialDesign:PackIcon Kind="Power"/>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
+                            <Button Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" VerticalAlignment="Center">
+                                <Border BorderBrush="Blue" BorderThickness="1" CornerRadius="0">
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <materialDesign:PackIcon  Foreground="Blue" Kind="ContentSaveAll" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                                        <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center"><Run Text="Save Results"/></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </Button>
+                            <TextBlock VerticalAlignment="Center" Padding="10 0"><Run Text="3 files analysed"/></TextBlock>
+                            <Button x:Name="AddFiles_Button" Width="25" Height="25" Foreground="Blue" VerticalAlignment="Center" Click="AddFiles_Button_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Stroke="Blue" StrokeThickness="1"/>
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+
+                                <materialDesign:PackIcon Width="15" Height="15" Kind="Add" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </StackPanel>
+        <Grid Margin="250 55 0 0" Background="White" x:Name="MainContentGrid">
+
+        </Grid>
+     
     </Grid>
 </Window>
