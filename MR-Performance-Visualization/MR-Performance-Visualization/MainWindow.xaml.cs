@@ -90,6 +90,19 @@ namespace MR_Performance_Visualization
 
         private void AddFiles_Button_Click(object sender, RoutedEventArgs e)
         {
+            //get files here
+            //send to user contorl memory usage
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Trace Files|*.utr";
+            ofd.Title = "Select a Trace File";
+            ofd.RestoreDirectory = true;
+
+            if(ofd.ShowDialog() == true)
+            {
+                string filepath = ofd.FileName;
+                MainContentGrid.Children.Clear();
+                MainContentGrid.Children.Add(new UserControlMemoryUsage(filepath));
+            }
 
         }
     }
