@@ -51,7 +51,7 @@
                     </Grid>
                     <Grid Height="300">
                         <Grid x:Name="MainContentGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="250" Width="650">
-                            <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="-25,0,-25,0" />
+                            <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="-25,0,-25,0" DisableAnimations="True"/>
                         </Grid>
                     </Grid>
                 </StackPanel>
