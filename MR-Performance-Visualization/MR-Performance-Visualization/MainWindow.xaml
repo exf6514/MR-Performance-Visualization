@@ -9,10 +9,9 @@
         mc:Ignorable="d"
         Title="MR Performance Visualizer" Height="600" Width="1024" WindowStartupLocation="CenterScreen" VerticalAlignment="Bottom" Padding="10" Grid.IsSharedSizeScope="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" WindowStyle="None" Background="White" ResizeMode="NoResize">
     <Grid MouseDown="PowerGrid_MouseDown">
+        <Grid Margin="250 55 0 0" Background="White" x:Name="MainContentGrid"/>
+
         <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
-            <materialDesign:TransitioningContent x:Name="MenuActiveItemIndicator" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-                <Grid x:Name="ActiveIndicator" Margin="0 100 0 0" Background="Blue" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
-            </materialDesign:TransitioningContent>
             <ListView x:Name="ListViewMenu" Margin="0 100" Foreground="LightGray" FontFamily="Champagne &amp; Limousines" FontSize="18" SelectionChanged="ListViewMenu_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
@@ -33,9 +32,12 @@
                     </StackPanel>
                 </ListViewItem>
             </ListView>
+            <materialDesign:TransitioningContent x:Name="MenuActiveItemIndicator" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}" Panel.ZIndex="1">
+                <Grid x:Name="ActiveIndicator" Margin="0 100 0 0" Background="Blue" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
+            </materialDesign:TransitioningContent>
         </Grid>
         <StackPanel VerticalAlignment="Top">
-            <Grid Background="#FF0023FF" Height="10"></Grid>
+            <Grid Background="#FF0023FF" Height="10"/>
             <Border BorderBrush="#FFEEEEEE" BorderThickness="0 0 0 1">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -44,7 +46,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,5">
-                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Foreground="White">MRI Performance Visualizer</TextBlock>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Foreground="White"><Run Text="MRI Performance Visualizer"/></TextBlock>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="1" Background="#FFEEEEEE">
@@ -86,9 +88,6 @@
                 </Grid>
             </Border>
         </StackPanel>
-        <Grid Margin="250 55 0 0" Background="White" x:Name="MainContentGrid">
 
-        </Grid>
-     
     </Grid>
 </Window>

@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="545" d:DesignWidth="774">
     <Grid Background="White">
-        <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
+        <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}" Panel.ZIndex="-5">
             <StackPanel>
                 <Grid Height="45" VerticalAlignment="Top">
                     <Border BorderThickness="0 0 0 1" BorderBrush="black">
