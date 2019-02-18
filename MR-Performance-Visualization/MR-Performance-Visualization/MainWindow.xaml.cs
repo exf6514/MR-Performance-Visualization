@@ -31,17 +31,6 @@ namespace MR_Performance_Visualization
             MainContentGrid.Children.Clear();
             MainContentGrid.Children.Add(new UserControlMemoryUsage());
 
-            SeriesCollection SeriesCollection = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Values = new ChartValues<double> { 3, 5, 7, 4 }
-                },
-                new ColumnSeries
-                {
-                    Values = new ChartValues<decimal> { 5, 6, 4, 7 }
-                }
-            };
         }
 
         private void PowerButton_Click(object sender, RoutedEventArgs e)

@@ -16,7 +16,7 @@
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Memory" Width="30" Height="30" VerticalAlignment="Center" Margin="25,5,5,5"/>
-                        <TextBlock Text="Memory Usage" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                        <TextBlock Text="GCPU Chart" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60">
