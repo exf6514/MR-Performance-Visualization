@@ -16,15 +16,28 @@
                         <TextBox Margin="10,0,10,0" Text="GCPU Chart" FontSize="17" FontWeight="Bold" VerticalAlignment="Bottom" BorderBrush="{x:Null}"/>
                     </Border>
                 </Grid>
-                <StackPanel Margin="25 0">
-                    <Grid Height="300" Margin="20">
-                        <Grid x:Name="MainContentGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="250" Width="650">
-                            <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="-25,40,-25,-40" DisableAnimations="True">
+                <StackPanel Margin="0">
+                    <Grid Height="225" Margin="10">
+                        <Grid x:Name="MainContentGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="650">
+                            <lvc:CartesianChart Series="{Binding CPUSeriesCollection}" Margin="0,0,0,-30" DisableAnimations="True">
                                 <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Title="GCPU Amount" LabelFormatter="{Binding Formatter}" Position="LeftBottom"></lvc:Axis>
+                                    <lvc:Axis Title="GCPU Amount" Position="LeftBottom"></lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Title="GCPU Value" LabelFormatter="{Binding Formatter}" Position="LeftBottom"></lvc:Axis>
+                                    <lvc:Axis Title="GCPU Value" Position="LeftBottom"></lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
+                        </Grid>
+                    </Grid>
+                    <!-- HC chart -->
+                    <Grid Height="225" Margin="10">
+                        <Grid x:Name="HCContentGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="650">
+                            <lvc:CartesianChart Series="{Binding HCSeriesCollection}" Margin="0,0,0,-30" DisableAnimations="True">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="GHC Amount" Position="LeftBottom"></lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="GHC Value" Position="LeftBottom"></lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
                             </lvc:CartesianChart>
                         </Grid>

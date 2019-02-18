@@ -36,26 +36,44 @@ namespace MR_Performance_Visualization
                 Console.WriteLine("File path provided: " + filepath);
                 list = tfp.GetGlobalProcesses(filepath);
                 Console.WriteLine("list.Count: " + list.Count);
-                ChartValues<double> values = new ChartValues<double>();
-                var tempValues = new List<Double>();
+                ChartValues<double> gcpuValues = new ChartValues<double>();
+                ChartValues<double> ghcValues = new ChartValues<double>();
+
+                //temp lists
+                var tempGcpuValues = new List<double>();
+                var tempGhcValues = new List<double>();
+
                 foreach (GlobalProcess p in list)
                 {
-                    tempValues.Add(p.Gcpu);
+                    tempGcpuValues.Add(p.Gcpu);
+                    tempGhcValues.Add((double)p.Ghc);
                 }
-                values.AddRange(tempValues);
+                gcpuValues.AddRange(tempGcpuValues);
+                ghcValues.AddRange(tempGhcValues);
+
                 //set series data to accessible attribute
-                SeriesCollection = new SeriesCollection
+                CPUSeriesCollection = new SeriesCollection
                 {
                     new LineSeries
                     {
                         Title = "Gcpu",
-                        Values = values
+                        Values = gcpuValues
+                    }
+                };
+                // handle counts series
+                HCSeriesCollection = new SeriesCollection
+                {
+                    new LineSeries
+                    {
+                        Title = "Ghc",
+                        Values = ghcValues
                     }
                 };
             }
             DataContext = this;
         }
         //accessible data
-        public SeriesCollection SeriesCollection { get; set; }
+        public SeriesCollection CPUSeriesCollection { get; set; }
+        public SeriesCollection HCSeriesCollection { get; set; }
     }
 }
