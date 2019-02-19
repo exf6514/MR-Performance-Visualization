@@ -14,8 +14,10 @@ namespace MR_Performance_Visualization
             Console.WriteLine("Start reading");
             string[] lines = System.IO.File.ReadAllLines(path);
             Console.WriteLine("Read finished");
+
             List<GlobalProcess> globalProcessList = new List<GlobalProcess>();
-            var pCount = 0;
+
+            var pCount = 0; 
             foreach (string line in lines)
             {
                 pCount++;
@@ -23,7 +25,12 @@ namespace MR_Performance_Visualization
 
                 if (row[4].StartsWith("Global"))
                 {
-                    string timestamp = row[0];
+                    string fullTimestamp = row[0];
+                    string[] splitTS = fullTimestamp.Split('-');
+                    string hmsm = splitTS[1];
+                    string[] splitHMS = hmsm.Split('.');
+                    string timestamp = splitHMS[0];
+
                     int pid = int.Parse(row[1]);
                     int tid = int.Parse(row[2]);
                     double gcpu = 0.0;
