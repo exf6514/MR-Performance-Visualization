@@ -42,15 +42,17 @@ namespace MR_Performance_Visualization
                 //temp lists
                 var tempGcpuValues = new List<double>();
                 var tempGhcValues = new List<double>();
+                var tempLabels = new List<string>();
 
                 foreach (GlobalProcess p in list)
                 {
                     tempGcpuValues.Add(p.Gcpu);
                     tempGhcValues.Add((double)p.Ghc);
+                    tempLabels.Add(p.Timestamp);
                 }
                 gcpuValues.AddRange(tempGcpuValues);
                 ghcValues.AddRange(tempGhcValues);
-
+                Labels = tempLabels.ToArray();
                 //set series data to accessible attribute
                 CPUSeriesCollection = new SeriesCollection
                 {
@@ -75,5 +77,6 @@ namespace MR_Performance_Visualization
         //accessible data
         public SeriesCollection CPUSeriesCollection { get; set; }
         public SeriesCollection HCSeriesCollection { get; set; }
+        public string[] Labels { get; set; }
     }
 }
