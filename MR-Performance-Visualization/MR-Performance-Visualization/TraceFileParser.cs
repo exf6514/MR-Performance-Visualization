@@ -15,9 +15,10 @@ namespace MR_Performance_Visualization
             string[] lines = System.IO.File.ReadAllLines(path);
             Console.WriteLine("Read finished");
             List<GlobalProcess> globalProcessList = new List<GlobalProcess>();
-
+            var pCount = 0;
             foreach (string line in lines)
             {
+                pCount++;
                 string[] row = line.Split('|');
 
                 if (row[4].StartsWith("Global"))
@@ -88,7 +89,7 @@ namespace MR_Performance_Visualization
 
             Console.WriteLine("finished");
             Console.WriteLine("Globals amount: " + globalProcessList.Count);
-
+            Console.WriteLine("Process amount: " + (pCount - globalProcessList.Count));
             return globalProcessList;
 
         }
