@@ -26,6 +26,8 @@ namespace MR_Performance_Visualization
         {
             InitializeComponent();
 
+            int graphStep = 0;
+
             //Reading the file and getting all global processes
             TraceFileParser tfp = new TraceFileParser();
             List<GlobalProcess> list = new List<GlobalProcess>();
@@ -46,13 +48,19 @@ namespace MR_Performance_Visualization
 
                 foreach (GlobalProcess p in list)
                 {
-                    tempGcpuValues.Add(p.Gcpu);
-                    tempGhcValues.Add((double)p.Ghc);
+                    if (p.Gcpu > 0) tempGcpuValues.Add(p.Gcpu);
+                    if (p.Ghc > 0) tempGhcValues.Add((double)p.Ghc);
                     tempLabels.Add(p.Timestamp);
                 }
+                //add to values
                 gcpuValues.AddRange(tempGcpuValues);
                 ghcValues.AddRange(tempGhcValues);
+
+                //handle labels
                 Labels = tempLabels.ToArray();
+                graphStep = tempLabels.Count / 10;
+                Console.WriteLine("graph step is: " + graphStep);
+
                 //set series data to accessible attribute
                 CPUSeriesCollection = new SeriesCollection
                 {
