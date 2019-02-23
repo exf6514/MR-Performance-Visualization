@@ -54,7 +54,7 @@
                             <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray">
                                 <materialDesign:PackIcon Kind="HelpOutline"/>
                             </Button>
-                            <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Foreground="Gray">
+                            <Button x:Name="Settings_Button" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Foreground="Gray" Click="Settings_Button_Click" >
                                 <materialDesign:PackIcon Kind="Settings"/>
                             </Button>
                             <Button x:Name="PowerButton" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Margin="10 0 0 0" Foreground="Red" Click="PowerButton_Click">
@@ -70,7 +70,7 @@
                                     </StackPanel>
                                 </Border>
                             </Button>
-                            <TextBlock VerticalAlignment="Center" Padding="10 0"><Run Text="3 files analysed"/></TextBlock>
+                            <TextBlock VerticalAlignment="Center" Padding="10 0"><TextBlock x:Name="files_analysed">3</TextBlock> file analysed</TextBlock>
                             <Button x:Name="AddFiles_Button" Width="25" Height="25" Foreground="Blue" VerticalAlignment="Center" Click="AddFiles_Button_Click">
                                 <Button.Template>
                                     <ControlTemplate TargetType="{x:Type Button}">

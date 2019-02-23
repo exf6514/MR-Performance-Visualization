@@ -24,6 +24,8 @@ namespace MR_Performance_Visualization
     /// </summary>
     public partial class MainWindow : Window
     {
+        Utils utils = new Utils();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -93,6 +95,14 @@ namespace MR_Performance_Visualization
                 MainContentGrid.Children.Add(new UserControlMemoryUsage(filepath));
             }
 
+        }
+
+        private void Settings_Button_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            utils.ApplyEffect(this);
+            settingsWindow.ShowDialog();
+            utils.ClearEffect(this);
         }
     }
 }
