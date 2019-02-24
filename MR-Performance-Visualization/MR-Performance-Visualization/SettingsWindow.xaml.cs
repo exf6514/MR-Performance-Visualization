@@ -46,11 +46,11 @@ namespace MR_Performance_Visualization
                     break;
                 case 1:
                     MainContentGrid.Children.Clear();
-                    //MainContentGrid.Children.Add(new UserControlMemoryUsage());
+                    MainContentGrid.Children.Add(new SettingFontsUserControl());
                     break;
                 case 2:
                     MainContentGrid.Children.Clear();
-                    //MainContentGrid.Children.Add(new UserControlMemoryUsage());
+                    MainContentGrid.Children.Add(new SettingThemesUserControl());
                     break;
                 default:
                     break;

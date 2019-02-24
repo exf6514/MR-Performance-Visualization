@@ -9,35 +9,35 @@
         mc:Ignorable="d"
         Title="MR Performance Visualizer" Height="600" Width="1024" WindowStartupLocation="CenterScreen" VerticalAlignment="Bottom" Padding="10" Grid.IsSharedSizeScope="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" WindowStyle="None" Background="White" ResizeMode="NoResize">
     <Grid MouseDown="PowerGrid_MouseDown">
-        <Grid Margin="250 55 0 0" Background="White" x:Name="MainContentGrid"/>
+        <Grid Margin="250,51,0,0" Background="{DynamicResource Main_Content_Color}" x:Name="MainContentGrid"/>
 
-        <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
+        <Grid Width="250" HorizontalAlignment="Left" Background="{DynamicResource Side_Bar_Color}">
             <ListView x:Name="ListViewMenu" Margin="0 100" Foreground="LightGray" FontFamily="Champagne &amp; Limousines" FontSize="18" SelectionChanged="ListViewMenu_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Memory" Width="30" Height="30" VerticalAlignment="Center" Margin="25,5,5,5"/>
-                        <TextBlock Text="GCPU Chart" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                        <TextBlock Text="GCPU Chart" VerticalAlignment="Center" Margin="20 0" FontSize="{DynamicResource Main_App_Font_Size_Big}" FontFamily="{DynamicResource Main_App_Font_Family}"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Brain" Width="30" Height="30" VerticalAlignment="Center" Margin="25,5,5,5"/>
-                        <TextBlock Text="CPU Usage" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                        <TextBlock Text="CPU Usage" VerticalAlignment="Center" Margin="20 0" FontSize="{DynamicResource Main_App_Font_Size_Big}" FontFamily="{DynamicResource Main_App_Font_Family}"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="VectorCircle" Width="30" Height="30" VerticalAlignment="Center" Margin="25,5,5,5"/>
-                        <TextBlock Text="Processes" FontSize="17" VerticalAlignment="Center" Margin="20 0"/>
+                        <TextBlock Text="Processes" VerticalAlignment="Center" Margin="20 0" FontSize="{DynamicResource Main_App_Font_Size_Big}" FontFamily="{DynamicResource Main_App_Font_Family}"/>
                     </StackPanel>
                 </ListViewItem>
             </ListView>
             <materialDesign:TransitioningContent x:Name="MenuActiveItemIndicator" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}" Panel.ZIndex="1">
-                <Grid x:Name="ActiveIndicator" Margin="0 100 0 0" Background="Blue" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
+                <Grid x:Name="ActiveIndicator" Margin="0 100 0 0" Background="{DynamicResource Main_App_Color}" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
             </materialDesign:TransitioningContent>
         </Grid>
         <StackPanel VerticalAlignment="Top">
-            <Grid Background="#FF0023FF" Height="10"/>
+            <Grid Background="{DynamicResource Main_App_Color}" Height="10"/>
             <Border BorderBrush="#FFEEEEEE" BorderThickness="0 0 0 1">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -46,15 +46,15 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,5">
-                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Foreground="White"><Run Text="MRI Performance Visualizer"/></TextBlock>
+                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><Run Text="MRI Performance Visualizer"/></TextBlock>
                         </StackPanel>
                     </Grid>
-                    <Grid Grid.Column="1" Background="#FFEEEEEE">
+                    <Grid Grid.Column="1" Background="{DynamicResource Menu_Color}">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,10,5" Grid.Column="1">
-                            <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray">
+                            <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="{DynamicResource Menu_Icon_Color}">
                                 <materialDesign:PackIcon Kind="HelpOutline"/>
                             </Button>
-                            <Button x:Name="Settings_Button" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Foreground="Gray" Click="Settings_Button_Click" >
+                            <Button x:Name="Settings_Button" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Foreground="{DynamicResource Menu_Icon_Color}" Click="Settings_Button_Click" >
                                 <materialDesign:PackIcon Kind="Settings"/>
                             </Button>
                             <Button x:Name="PowerButton" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Margin="10 0 0 0" Foreground="Red" Click="PowerButton_Click">
@@ -63,19 +63,19 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
                             <Button Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" VerticalAlignment="Center">
-                                <Border BorderBrush="Blue" BorderThickness="1" CornerRadius="0">
+                                <Border BorderBrush="{DynamicResource Main_App_Color}" BorderThickness="1" CornerRadius="0">
                                     <StackPanel Orientation="Horizontal" Margin="5">
-                                        <materialDesign:PackIcon  Foreground="Blue" Kind="ContentSaveAll" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0"/>
-                                        <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center"><Run Text="Save Results"/></TextBlock>
+                                        <materialDesign:PackIcon  Foreground="{DynamicResource Main_App_Color}" Kind="ContentSaveAll" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                                        <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><Run Text="Save Results"/></TextBlock>
                                     </StackPanel>
                                 </Border>
                             </Button>
-                            <TextBlock VerticalAlignment="Center" Padding="10 0"><TextBlock x:Name="files_analysed">3</TextBlock> file analysed</TextBlock>
-                            <Button x:Name="AddFiles_Button" Width="25" Height="25" Foreground="Blue" VerticalAlignment="Center" Click="AddFiles_Button_Click">
+                            <TextBlock VerticalAlignment="Center" Padding="10 0" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><TextBlock x:Name="files_analysed">3</TextBlock> file analysed</TextBlock>
+                            <Button x:Name="AddFiles_Button" Width="25" Height="25" Foreground="{DynamicResource Main_App_Color}" VerticalAlignment="Center" Click="AddFiles_Button_Click">
                                 <Button.Template>
                                     <ControlTemplate TargetType="{x:Type Button}">
                                         <Grid>
-                                            <Ellipse Stroke="Blue" StrokeThickness="1"/>
+                                            <Ellipse Stroke="{DynamicResource Main_App_Color}" StrokeThickness="1"/>
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Grid>
                                     </ControlTemplate>

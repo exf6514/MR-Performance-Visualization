@@ -12,7 +12,7 @@ namespace MR_Performance_Visualization
         public void ApplyEffect(Window win)
         {
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
-            objBlur.Radius = 4;
+            objBlur.Radius = 5;
             win.Effect = objBlur;
         }
 

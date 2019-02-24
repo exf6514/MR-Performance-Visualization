@@ -92,8 +92,14 @@
     <Compile Include="SettingColorsUserControl.xaml.cs">
       <DependentUpon>SettingColorsUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingFontsUserControl.xaml.cs">
+      <DependentUpon>SettingFontsUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingThemesUserControl.xaml.cs">
+      <DependentUpon>SettingThemesUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="TraceFileParser.cs" />
     <Compile Include="UserControlMemoryUsage.xaml.cs">
@@ -119,7 +125,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SettingFontsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingThemesUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Skins\TestDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,19 +181,7 @@
     <Resource Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cpu.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="MRI_Performance_favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\analysing.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\processor.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\question-mark.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -190,16 +196,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\android-chrome-96x96.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\question_mark_1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\settings-work-tool.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\settings-work-tool %281%29.png" />
+    <Resource Include="Resources\Dark.jpg" />
+    <Resource Include="Resources\Light.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,11 +21,14 @@ namespace MR_Performance_Visualization
     public partial class SettingColorsUserControl : UserControl
     {
         Color choosenColor = new Color();
+        Color currentColor = new Color();
 
         public SettingColorsUserControl()
         {
             InitializeComponent();
-            choosenColor.Equals(ColorConverter.ConvertFromString("#FF0000FF"));
+            currentColor = (Color)ColorConverter.ConvertFromString(Application.Current.Resources["Main_App_Color"].ToString());
+            changeRGBValues(currentColor);
+            changeSelectedColorView(currentColor);
         }
 
         private void Recommended_Color_Click(object sender, RoutedEventArgs e)
@@ -37,7 +40,7 @@ namespace MR_Performance_Visualization
         private void changeSelectedColorView(Color color)
         {
             Brush brush = new SolidColorBrush(color);
-            choosenColor.Equals(color);
+            choosenColor = color;
             selectedColorView.Background = brush;
         }
         private void changeRGBValues(Color color)
@@ -82,6 +85,11 @@ namespace MR_Performance_Visualization
             Color rgbColor = getColorFromRGBInputs();
             changeRGBValues(rgbColor);
             changeSelectedColorView(rgbColor);
+        }
+
+        private void ApplyColor_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Resources["Main_App_Color"] = new SolidColorBrush(choosenColor);
         }
     }
 }
