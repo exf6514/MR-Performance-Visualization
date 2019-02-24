@@ -8,12 +8,12 @@
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="545" d:DesignWidth="774">
-    <Grid Background="White">
+    <Grid Background="{DynamicResource Main_Content_Color}">
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}" Panel.ZIndex="-5">
             <StackPanel>
                 <Grid Height="45" VerticalAlignment="Top">
-                    <Border BorderThickness="0 0 0 1" BorderBrush="black">
-                        <TextBox Margin="10,0,10,0" Text="Global Charts" FontSize="17" FontWeight="Bold" VerticalAlignment="Bottom" BorderBrush="{x:Null}"/>
+                    <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource Main_Text_Color}">
+                        <TextBox Margin="10,0,10,0" Text="Global Charts" FontWeight="Bold" Foreground="{DynamicResource Main_Text_Color}" FontFamily="{DynamicResource Main_App_Font_Family}" VerticalAlignment="Bottom" BorderBrush="{x:Null}" FontSize="{DynamicResource Main_App_Font_Size_Big}"/>
                     </Border>
                 </Grid>
                 <StackPanel Margin="0">
@@ -21,14 +21,14 @@
                         <Grid x:Name="MainContentGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="650">
                             <lvc:CartesianChart Series="{Binding CPUSeriesCollection}" Margin="0,0,0,-30" DisableAnimations="True">
                                 <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Title="Timestamp" Labels="{Binding Labels}" Position="LeftBottom">
+                                    <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Labels="{Binding Labels}" Position="LeftBottom">
                                         <lvc:Axis.Separator >
                                             <lvc:Separator Step="200"></lvc:Separator>
                                         </lvc:Axis.Separator>
                                     </lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Title="GCPU Value" Position="LeftBottom"></lvc:Axis>
+                                    <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="GCPU Value" Position="LeftBottom"></lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
                             </lvc:CartesianChart>
                         </Grid>
@@ -38,14 +38,14 @@
                         <Grid x:Name="HCContentGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="650">
                             <lvc:CartesianChart Series="{Binding HCSeriesCollection}" Margin="0,0,0,-30" DisableAnimations="True">
                                 <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Title="Timestamp" Labels="{Binding Labels}" Position="LeftBottom">
+                                    <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Labels="{Binding Labels}" Position="LeftBottom">
                                         <lvc:Axis.Separator >
                                             <lvc:Separator Step="200"></lvc:Separator>
                                         </lvc:Axis.Separator>
                                     </lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Title="GHC Value" Position="LeftBottom"></lvc:Axis>
+                                    <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="GHC Value" Position="LeftBottom"></lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
                             </lvc:CartesianChart>
                         </Grid>
