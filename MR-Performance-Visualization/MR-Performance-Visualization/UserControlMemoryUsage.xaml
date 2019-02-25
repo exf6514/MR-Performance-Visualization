@@ -19,11 +19,11 @@
                 <StackPanel Margin="0">
                     <Grid Height="225" Margin="10">
                         <Grid x:Name="MainContentGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="650">
-                            <lvc:CartesianChart Series="{Binding CPUSeriesCollection}" Margin="0,0,0,-30" DisableAnimations="True">
+                            <lvc:CartesianChart Series="{Binding CPUSeriesCollection}" Margin="0,0,0,-30" Zoom="X" DisableAnimations="True">
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Labels="{Binding Labels}" Position="LeftBottom">
                                         <lvc:Axis.Separator >
-                                            <lvc:Separator Step="200"></lvc:Separator>
+                                            <lvc:Separator Step="{Binding graphStep}"></lvc:Separator>
                                         </lvc:Axis.Separator>
                                     </lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
@@ -36,11 +36,11 @@
                     <!-- HC chart -->
                     <Grid Height="225" Margin="10">
                         <Grid x:Name="HCContentGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="650">
-                            <lvc:CartesianChart Series="{Binding HCSeriesCollection}" Margin="0,0,0,-30" DisableAnimations="True">
+                            <lvc:CartesianChart Series="{Binding HCSeriesCollection}" Margin="0,0,0,-30" Zoom="X" DisableAnimations="True">
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Labels="{Binding Labels}" Position="LeftBottom">
                                         <lvc:Axis.Separator >
-                                            <lvc:Separator Step="200"></lvc:Separator>
+                                            <lvc:Separator Step="{Binding graphStep}"></lvc:Separator>
                                         </lvc:Axis.Separator>
                                     </lvc:Axis>
                                 </lvc:CartesianChart.AxisX>

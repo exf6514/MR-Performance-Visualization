@@ -16,6 +16,7 @@ namespace MR_Performance_Visualization
             Console.WriteLine("Read finished");
 
             List<GlobalProcess> globalProcessList = new List<GlobalProcess>();
+            HashSet<string> uniqueProcessNames = new HashSet<string>();
 
             var pCount = 0; 
             foreach (string line in lines)
@@ -90,6 +91,16 @@ namespace MR_Performance_Visualization
 
                     globalProcessList.Add(new GlobalProcess(timestamp, pid, tid, gcpu, gcpuPeak, ghc, ghcPeak));
 
+                } else if (row[4].StartsWith("Process"))
+                {
+                    string[] usertext = row[4].Split(':');
+                    if(usertext.Length > 1)
+                    {
+                        string fullProcessName = usertext[1];
+                        string processName = fullProcessName.Split('(')[0];
+                        uniqueProcessNames.Add(processName);
+                    }
+                    
                 }
 
             }
@@ -97,6 +108,7 @@ namespace MR_Performance_Visualization
             Console.WriteLine("finished");
             Console.WriteLine("Globals amount: " + globalProcessList.Count);
             Console.WriteLine("Process amount: " + (pCount - globalProcessList.Count));
+            Console.WriteLine("Unique process names: " + uniqueProcessNames.Count);
             return globalProcessList;
 
         }
