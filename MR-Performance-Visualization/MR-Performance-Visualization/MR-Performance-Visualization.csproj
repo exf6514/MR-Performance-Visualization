@@ -101,7 +101,7 @@
     <Compile Include="SettingThemesUserControl.xaml.cs">
       <DependentUpon>SettingThemesUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TraceFileParser.cs" />
+    <Compile Include="TraceFileParserSingleton.cs" />
     <Compile Include="UserControlMemoryUsage.xaml.cs">
       <DependentUpon>UserControlMemoryUsage.xaml</DependentUpon>
     </Compile>

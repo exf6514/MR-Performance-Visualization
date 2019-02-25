@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,18 +6,43 @@ using System.Threading.Tasks;
 
 namespace MR_Performance_Visualization
 {
-    class TraceFileParser
+    public sealed class TraceFileParserSingleton
     {
-        public List<GlobalProcess> GetGlobalProcesses(string path)
+        TraceFileParserSingleton()
+        {
+        }
+
+        //this makes constructor thread safe
+        private static readonly object padlock = new object();
+        private static TraceFileParserSingleton instance = null;
+        public static TraceFileParserSingleton Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new TraceFileParserSingleton();
+                    }
+                    return instance;
+                }
+            }
+        }
+
+        //all other accessible values
+        public List<GlobalProcess> GlobalProcessList { get; set; }
+
+        public void ParseTraceFile(string path)
         {
             Console.WriteLine("Start reading");
             string[] lines = System.IO.File.ReadAllLines(path);
             Console.WriteLine("Read finished");
 
-            List<GlobalProcess> globalProcessList = new List<GlobalProcess>();
+            List<GlobalProcess> tempGlobalProcessList = new List<GlobalProcess>();
             HashSet<string> uniqueProcessNames = new HashSet<string>();
 
-            var pCount = 0; 
+            var pCount = 0;
             foreach (string line in lines)
             {
                 pCount++;
@@ -87,31 +111,31 @@ namespace MR_Performance_Visualization
 
                         }
 
-                    }
+                    }//foreach column in usertext
 
-                    globalProcessList.Add(new GlobalProcess(timestamp, pid, tid, gcpu, gcpuPeak, ghc, ghcPeak));
+                    tempGlobalProcessList.Add(new GlobalProcess(timestamp, pid, tid, gcpu, gcpuPeak, ghc, ghcPeak));
 
-                } else if (row[4].StartsWith("Process"))
+                }
+                else if (row[4].StartsWith("Process"))
                 {
                     string[] usertext = row[4].Split(':');
-                    if(usertext.Length > 1)
+                    if (usertext.Length > 1)
                     {
                         string fullProcessName = usertext[1];
                         string processName = fullProcessName.Split('(')[0];
                         uniqueProcessNames.Add(processName);
                     }
-                    
+
                 }
 
-            }
+            }//foreach line
 
             Console.WriteLine("finished");
-            Console.WriteLine("Globals amount: " + globalProcessList.Count);
-            Console.WriteLine("Process amount: " + (pCount - globalProcessList.Count));
+            Console.WriteLine("Globals amount: " + tempGlobalProcessList.Count);
+            Console.WriteLine("Process amount: " + (pCount - tempGlobalProcessList.Count));
             Console.WriteLine("Unique process names: " + uniqueProcessNames.Count);
-            return globalProcessList;
-
-        }
-
-    }
+            this.GlobalProcessList = tempGlobalProcessList;
+      
+        }//ParseTraceFile()
+    }//TraceFileParser
 }

@@ -28,16 +28,17 @@ namespace MR_Performance_Visualization
 
             int graphStep = 0;
 
+            //get an instance of the trace file parser singleton
+            TraceFileParserSingleton tfps = TraceFileParserSingleton.Instance;
+
             //Reading the file and getting all global processes
-            TraceFileParser tfp = new TraceFileParser();
             List<GlobalProcess> list = new List<GlobalProcess>();
 
             //get the path to  the .utr here. If file provided, get processes
             if (filepath != "")
             {
                 Console.WriteLine("File path provided: " + filepath);
-                list = tfp.GetGlobalProcesses(filepath);
-                Console.WriteLine("list.Count: " + list.Count);
+                tfps.ParseTraceFile(filepath);
                 ChartValues<double> gcpuValues = new ChartValues<double>();
                 ChartValues<double> ghcValues = new ChartValues<double>();
 
@@ -45,6 +46,10 @@ namespace MR_Performance_Visualization
                 var tempGcpuValues = new List<double>();
                 var tempGhcValues = new List<double>();
                 var tempLabels = new List<string>();
+
+                //get list from singleton
+                list = tfps.GlobalProcessList;
+                Console.WriteLine("list.Count: " + list.Count);
 
                 foreach (GlobalProcess p in list)
                 {
