@@ -84,7 +84,7 @@ namespace MR_Performance_Visualization
                         Values = ghcValues
                     }
                 };
-            }
+            }// if no file path provided
             DataContext = this;
         }
         //accessible data

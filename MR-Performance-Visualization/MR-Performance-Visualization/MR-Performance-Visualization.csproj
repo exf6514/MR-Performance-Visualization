@@ -89,6 +89,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="GlobalProcess.cs" />
+    <Compile Include="Process.cs" />
+    <Compile Include="ProcessData.xaml.cs">
+      <DependentUpon>ProcessData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingColorsUserControl.xaml.cs">
       <DependentUpon>SettingColorsUserControl.xaml</DependentUpon>
     </Compile>
@@ -121,6 +125,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProcessData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SettingColorsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

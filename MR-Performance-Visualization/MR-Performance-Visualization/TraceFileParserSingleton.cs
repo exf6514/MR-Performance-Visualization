@@ -32,6 +32,8 @@ namespace MR_Performance_Visualization
 
         //all other accessible values
         public List<GlobalProcess> GlobalProcessList { get; set; }
+        public List<string> ProcessNames { get; set; }
+        public Dictionary<string, List<Process>> ProcessDictionary { get; set; }
 
         public void ParseTraceFile(string path)
         {
@@ -135,6 +137,7 @@ namespace MR_Performance_Visualization
             Console.WriteLine("Process amount: " + (pCount - tempGlobalProcessList.Count));
             Console.WriteLine("Unique process names: " + uniqueProcessNames.Count);
             this.GlobalProcessList = tempGlobalProcessList;
+            this.ProcessNames = uniqueProcessNames.ToList();
       
         }//ParseTraceFile()
     }//TraceFileParser
