@@ -33,7 +33,7 @@ namespace MR_Performance_Visualization
         //all other accessible values
         public List<GlobalProcess> GlobalProcessList { get; set; }
         public List<string> ProcessNames { get; set; }
-        public Dictionary<string, List<Process>> ProcessDictionary { get; set; }
+        public Dictionary<string, List<Process>> ProcessDictionary { get; set; } // name of process -> list of Process 'points' that contains ts, CPU, PRIV, and HC
 
         public void ParseTraceFile(string path)
         {
@@ -42,6 +42,7 @@ namespace MR_Performance_Visualization
             Console.WriteLine("Read finished");
 
             List<GlobalProcess> tempGlobalProcessList = new List<GlobalProcess>();
+            ProcessDictionary = new Dictionary<string, List<Process>>();
             HashSet<string> uniqueProcessNames = new HashSet<string>();
 
             var pCount = 0;
@@ -120,15 +121,72 @@ namespace MR_Performance_Visualization
                 }
                 else if (row[4].StartsWith("Process"))
                 {
-                    string[] usertext = row[4].Split(':');
+                    string fullTimestamp = row[0];
+                    string[] splitTS = fullTimestamp.Split('-');
+                    string hmsm = splitTS[1];
+                    string[] splitHMS = hmsm.Split('.');
+                    string timestamp = splitHMS[0];
+
+                    string processName = "";
+                    double cpu = 0.0;
+                    double hc = 0.0;
+                    double priv = 0.0;
+
+                    string[] usertext = row[4].Split(';');
                     if (usertext.Length > 1)
                     {
-                        string fullProcessName = usertext[1];
-                        string processName = fullProcessName.Split('(')[0];
-                        uniqueProcessNames.Add(processName);
+                        for(var i = 0; i < usertext.Count(); i++)
+                        {
+                            
+                            if(i == 0) //need to treat index 0 differently because it's formatted weird
+                            {
+                                string[] firstChunk = usertext[i].Split(':');
+                                string fullProcessName = firstChunk[1];
+                                processName = fullProcessName.Split('(')[0];
+                            } else
+                            {
+                                //look for CPU, PRIV, and HC
+                                if (usertext[i].StartsWith("CPU(")) //dont want to confuse CPU with CPUPeak
+                                {
+                                    string value = usertext[i].Split(':')[1];
+                                    cpu = double.Parse(value.Remove(value.Length - 1, 1)); //remove '%'
+                                }
+
+                                if (usertext[i].StartsWith("HC("))
+                                {
+                                    string value = usertext[i].Split(':')[1];
+                                    hc = double.Parse(value);
+                                }
+
+                                if (usertext[i].StartsWith("PRIV("))
+                                {
+                                    string value = usertext[i].Split(':')[1];
+                                    priv = double.Parse(value.Remove(value.Length - 2, 2)); //remove 'MB'
+                                }
+
+                            }// if not first column 
+
+                            Process processData = new Process(timestamp, hc, null, priv, null, cpu, null);
+
+                            //check for keys and add to data
+                            if (ProcessDictionary.ContainsKey(processName))
+                            {
+                                //if name exists, just add process to the array
+                                List<Process> existingData = ProcessDictionary[processName];
+                                existingData.Add(processData);
+                                ProcessDictionary[processName] = existingData;
+                            } else
+                            {
+                                //add new entry to dictionary
+                                List<Process> newList = new List<Process>();
+                                newList.Add(processData);
+                                ProcessDictionary.Add(processName, newList);
+                            }
+
+                        }// for each column in usertext
                     }
 
-                }
+                }// for all processes
 
             }//foreach line
 
@@ -137,7 +195,7 @@ namespace MR_Performance_Visualization
             Console.WriteLine("Process amount: " + (pCount - tempGlobalProcessList.Count));
             Console.WriteLine("Unique process names: " + uniqueProcessNames.Count);
             this.GlobalProcessList = tempGlobalProcessList;
-            this.ProcessNames = uniqueProcessNames.ToList();
+            this.ProcessNames = ProcessDictionary.Keys.ToList();
       
         }//ParseTraceFile()
     }//TraceFileParser
