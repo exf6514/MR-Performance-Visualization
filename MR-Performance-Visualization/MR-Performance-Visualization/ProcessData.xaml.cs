@@ -62,6 +62,7 @@ namespace MR_Performance_Visualization
                     var tempcpuValues = new List<double>();
                     var temphcValues = new List<double>();
                     var tempprivValues = new List<double>();
+                    var tempLabels = new List<string>();
 
                     Console.Write("Found ");
                     Console.Write(values.Count);
@@ -72,18 +73,21 @@ namespace MR_Performance_Visualization
                         if (p.CPU > 0) tempcpuValues.Add(p.CPU);
                         if (p.HC > 0) temphcValues.Add(p.HC);
                         if (p.PRIV > 0) tempprivValues.Add(p.PRIV);
+                        tempLabels.Add(p.Timestamp);
                     }
 
                     cpuValues.AddRange(tempcpuValues);
                     hcValues.AddRange(temphcValues);
                     privValues.AddRange(tempprivValues);
+                    Labels = tempLabels.ToArray();
 
                     ProcessCpu_SC = new SeriesCollection
                     {
                         new LineSeries
                         {
                             Title = "Cpu",
-                            Values = cpuValues
+                            Values = cpuValues,
+                            PointGeometry = null
                         }
                     };
 
@@ -93,6 +97,7 @@ namespace MR_Performance_Visualization
                         {
                             Title = "Hc",
                             Values = hcValues,
+                            PointGeometry = null
                         }
                     };
 
@@ -102,6 +107,7 @@ namespace MR_Performance_Visualization
                         {
                             Title = "Priv",
                             Values = privValues,
+                            PointGeometry = null
                         }
                     };
 
@@ -113,5 +119,6 @@ namespace MR_Performance_Visualization
         public SeriesCollection ProcessCpu_SC { get; set; }
         public SeriesCollection ProcessHc_SC { get; set; }
         public SeriesCollection ProcessPriv_SC { get; set; }
+        public string[] Labels { get; set; }
     }
 }

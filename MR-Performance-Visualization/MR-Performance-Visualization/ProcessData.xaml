@@ -12,15 +12,11 @@
         <ComboBox x:Name="process_names_cb" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="530"/>
         <Button x:Name="button" Content="Search" HorizontalAlignment="Left" Margin="575,10,0,0" VerticalAlignment="Top" Width="175" Click="Search_Button_Click"/>
         <!-- CPU CHART -->
-        <Grid Margin="10,65,425,200">
-            <Grid x:Name="PrivGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="325">
+        <Grid Margin="10,65,410,200">
+            <Grid x:Name="PrivGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="340">
                 <lvc:CartesianChart Series="{Binding ProcessCpu_SC}" Margin="0,0,0,0" Zoom="X" DisableAnimations="True">
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Position="LeftBottom">
-                            <lvc:Axis.Separator >
-                                <lvc:Separator Step="10"></lvc:Separator>
-                            </lvc:Axis.Separator>
-                        </lvc:Axis>
+                        <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" Labels="{Binding Labels}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Position="LeftBottom"></lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
                         <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="PRIV Value" Position="LeftBottom"></lvc:Axis>
@@ -29,15 +25,11 @@
             </Grid>
         </Grid>
         <!-- HC CHART -->
-        <Grid Margin="425,65,10,200">
-            <Grid x:Name="HCGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="325">
+        <Grid Margin="410,65,10,200">
+            <Grid x:Name="HCGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="340">
                 <lvc:CartesianChart Series="{Binding ProcessHc_SC}" Margin="0,0,0,0" Zoom="X" DisableAnimations="True">
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Position="LeftBottom">
-                            <lvc:Axis.Separator >
-                                <lvc:Separator Step="10"></lvc:Separator>
-                            </lvc:Axis.Separator>
-                        </lvc:Axis>
+                        <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" Labels="{Binding Labels}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Position="LeftBottom"></lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
                         <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="HC Value" Position="LeftBottom"></lvc:Axis>
@@ -50,11 +42,7 @@
             <Grid x:Name="CPUGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="750">
                 <lvc:CartesianChart Series="{Binding ProcessPriv_SC}" Margin="0,0,0,0" Zoom="X" DisableAnimations="True">
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Position="LeftBottom">
-                            <lvc:Axis.Separator >
-                                <lvc:Separator Step="10"></lvc:Separator>
-                            </lvc:Axis.Separator>
-                        </lvc:Axis>
+                        <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" Labels="{Binding Labels}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Position="LeftBottom"></lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
                         <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="CPU Value" Position="LeftBottom"></lvc:Axis>
