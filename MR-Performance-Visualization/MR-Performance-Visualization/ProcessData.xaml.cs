@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,8 @@ namespace MR_Performance_Visualization
     /// </summary>
     public partial class ProcessData : UserControl
     {
+        TraceFileParserSingleton tfps = TraceFileParserSingleton.Instance;
+
         public ProcessData()
         {
             InitializeComponent();
@@ -27,7 +31,6 @@ namespace MR_Performance_Visualization
             process_names_cb.Items.Insert(0, "Please select a process");
             process_names_cb.SelectedIndex = 0;
 
-            TraceFileParserSingleton tfps = TraceFileParserSingleton.Instance;
             List<string> names = tfps.ProcessNames;
             if (names != null) //could be null if no data loaded yet
             {
@@ -46,7 +49,69 @@ namespace MR_Performance_Visualization
             {
                 string processName = process_names_cb.SelectedItem.ToString();
                 Console.WriteLine("Looking for this process: " + processName);
+                if (tfps.ProcessDictionary != null)
+                {
+                    List<Process> values = tfps.ProcessDictionary[processName];
+
+                    ChartValues<double> cpuValues = new ChartValues<double>();
+                    ChartValues<double> hcValues = new ChartValues<double>();
+                    ChartValues<double> privValues = new ChartValues<double>();
+
+
+                    //temp lists
+                    var tempcpuValues = new List<double>();
+                    var temphcValues = new List<double>();
+                    var tempprivValues = new List<double>();
+
+                    Console.Write("Found ");
+                    Console.Write(values.Count);
+                    Console.WriteLine(" values for this specific process");
+
+                    foreach(Process p in values)
+                    {
+                        if (p.CPU > 0) tempcpuValues.Add(p.CPU);
+                        if (p.HC > 0) temphcValues.Add(p.HC);
+                        if (p.PRIV > 0) tempprivValues.Add(p.PRIV);
+                    }
+
+                    cpuValues.AddRange(tempcpuValues);
+                    hcValues.AddRange(temphcValues);
+                    privValues.AddRange(tempprivValues);
+
+                    ProcessCpu_SC = new SeriesCollection
+                    {
+                        new LineSeries
+                        {
+                            Title = "Cpu",
+                            Values = cpuValues
+                        }
+                    };
+
+                    ProcessHc_SC = new SeriesCollection
+                    {
+                        new LineSeries
+                        {
+                            Title = "Hc",
+                            Values = hcValues,
+                        }
+                    };
+
+                    ProcessPriv_SC = new SeriesCollection
+                    {
+                        new LineSeries
+                        {
+                            Title = "Priv",
+                            Values = privValues,
+                        }
+                    };
+
+                }// if dictionary exists
             }
-        }
+            DataContext = this;
+        }//search button clicked
+
+        public SeriesCollection ProcessCpu_SC { get; set; }
+        public SeriesCollection ProcessHc_SC { get; set; }
+        public SeriesCollection ProcessPriv_SC { get; set; }
     }
 }

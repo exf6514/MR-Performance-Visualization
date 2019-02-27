@@ -22,12 +22,13 @@ namespace MR_Performance_Visualization
     /// </summary>
     public partial class UserControlMemoryUsage : UserControl
     {
+
         public UserControlMemoryUsage(string filepath = "")
         {
             InitializeComponent();
 
+            IsLoading = false;
             int graphStep = 0;
-
             //get an instance of the trace file parser singleton
             TraceFileParserSingleton tfps = TraceFileParserSingleton.Instance;
 
@@ -38,7 +39,9 @@ namespace MR_Performance_Visualization
             if (filepath != "")
             {
                 Console.WriteLine("File path provided: " + filepath);
+                IsLoading = true;
                 tfps.ParseTraceFile(filepath);
+                IsLoading = false;
                 ChartValues<double> gcpuValues = new ChartValues<double>();
                 ChartValues<double> ghcValues = new ChartValues<double>();
 
@@ -91,5 +94,6 @@ namespace MR_Performance_Visualization
         public SeriesCollection CPUSeriesCollection { get; set; }
         public SeriesCollection HCSeriesCollection { get; set; }
         public string[] Labels { get; set; }
+        public bool IsLoading { get; set; }
     }
 }

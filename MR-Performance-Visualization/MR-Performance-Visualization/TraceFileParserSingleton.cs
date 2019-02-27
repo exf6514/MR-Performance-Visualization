@@ -142,7 +142,7 @@ namespace MR_Performance_Visualization
                             {
                                 string[] firstChunk = usertext[i].Split(':');
                                 string fullProcessName = firstChunk[1];
-                                processName = fullProcessName.Split('(')[0];
+                                processName = fullProcessName.Split('(')[0].Trim();
                             } else
                             {
                                 //look for CPU, PRIV, and HC
@@ -166,24 +166,27 @@ namespace MR_Performance_Visualization
 
                             }// if not first column 
 
-                            Process processData = new Process(timestamp, hc, null, priv, null, cpu, null);
-
-                            //check for keys and add to data
-                            if (ProcessDictionary.ContainsKey(processName))
-                            {
-                                //if name exists, just add process to the array
-                                List<Process> existingData = ProcessDictionary[processName];
-                                existingData.Add(processData);
-                                ProcessDictionary[processName] = existingData;
-                            } else
-                            {
-                                //add new entry to dictionary
-                                List<Process> newList = new List<Process>();
-                                newList.Add(processData);
-                                ProcessDictionary.Add(processName, newList);
-                            }
+               
 
                         }// for each column in usertext
+
+                        //create new process data object and add it to the dictionary
+                        Process processData = new Process(timestamp, hc, null, priv, null, cpu, null);
+                        //check for keys and add to data
+                        if (ProcessDictionary.ContainsKey(processName))
+                        {
+                            //if name exists, just add process to the array
+                            List<Process> existingData = ProcessDictionary[processName];
+                            existingData.Add(processData);
+                            ProcessDictionary[processName] = existingData;
+                        }
+                        else
+                        {
+                            //add new entry to dictionary
+                            List<Process> newList = new List<Process>();
+                            newList.Add(processData);
+                            ProcessDictionary.Add(processName, newList);
+                        }
                     }
 
                 }// for all processes
