@@ -6,9 +6,14 @@
              xmlns:local="clr-namespace:MR_Performance_Visualization"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="545" d:DesignWidth="774">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
     <Grid Background="{DynamicResource Main_Content_Color}">
+        <!-- <fa:ImageAwesome x:Name="loading_spinner" Visibility="{Binding Path=IsLoading, Converter={StaticResource BoolToVis}}" Icon="Refresh" Spin="True" Height="48" Width="48" /> -->
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}" Panel.ZIndex="-5">
             <StackPanel>
                 <Grid Height="45" VerticalAlignment="Top">

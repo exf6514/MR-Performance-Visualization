@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MR_Performance_Visualization
 {
-    class GlobalProcess
+    public class GlobalProcess
     {
         public string Timestamp { get; set; }
         public int Pid { get; set; }

@@ -63,6 +63,7 @@ namespace MR_Performance_Visualization
             switch (index)
             {
                 case 0:
+                    //GLOBAL PROCESSES PAGE
                     MainContentGrid.Children.Clear();
                     MainContentGrid.Children.Add(new UserControlMemoryUsage());
                     break;
@@ -71,8 +72,9 @@ namespace MR_Performance_Visualization
                     //MainContentGrid.Children.Add(new UserControlMemoryUsage());
                     break;
                 case 2:
+                    //PER PROCESS PAGE
                     MainContentGrid.Children.Clear();
-                    //MainContentGrid.Children.Add(new UserControlMemoryUsage());
+                    MainContentGrid.Children.Add(new ProcessData());
                     break;
                 default:
                     break;

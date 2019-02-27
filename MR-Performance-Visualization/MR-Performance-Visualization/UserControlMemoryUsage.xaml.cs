@@ -22,22 +22,26 @@ namespace MR_Performance_Visualization
     /// </summary>
     public partial class UserControlMemoryUsage : UserControl
     {
+
         public UserControlMemoryUsage(string filepath = "")
         {
             InitializeComponent();
 
+            IsLoading = false;
             int graphStep = 0;
+            //get an instance of the trace file parser singleton
+            TraceFileParserSingleton tfps = TraceFileParserSingleton.Instance;
 
             //Reading the file and getting all global processes
-            TraceFileParser tfp = new TraceFileParser();
             List<GlobalProcess> list = new List<GlobalProcess>();
 
             //get the path to  the .utr here. If file provided, get processes
             if (filepath != "")
             {
                 Console.WriteLine("File path provided: " + filepath);
-                list = tfp.GetGlobalProcesses(filepath);
-                Console.WriteLine("list.Count: " + list.Count);
+                IsLoading = true;
+                tfps.ParseTraceFile(filepath);
+                IsLoading = false;
                 ChartValues<double> gcpuValues = new ChartValues<double>();
                 ChartValues<double> ghcValues = new ChartValues<double>();
 
@@ -45,6 +49,10 @@ namespace MR_Performance_Visualization
                 var tempGcpuValues = new List<double>();
                 var tempGhcValues = new List<double>();
                 var tempLabels = new List<string>();
+
+                //get list from singleton
+                list = tfps.GlobalProcessList;
+                Console.WriteLine("list.Count: " + list.Count);
 
                 foreach (GlobalProcess p in list)
                 {
@@ -79,12 +87,13 @@ namespace MR_Performance_Visualization
                         Values = ghcValues
                     }
                 };
-            }
+            }// if no file path provided
             DataContext = this;
         }
         //accessible data
         public SeriesCollection CPUSeriesCollection { get; set; }
         public SeriesCollection HCSeriesCollection { get; set; }
         public string[] Labels { get; set; }
+        public bool IsLoading { get; set; }
     }
 }
