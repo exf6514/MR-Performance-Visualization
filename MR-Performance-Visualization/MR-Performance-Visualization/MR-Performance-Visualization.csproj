@@ -91,6 +91,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FilterDataWindow.xaml.cs">
+      <DependentUpon>FilterDataWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GlobalProcess.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="ProcessData.xaml.cs">
@@ -116,6 +119,10 @@
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="FilterDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
