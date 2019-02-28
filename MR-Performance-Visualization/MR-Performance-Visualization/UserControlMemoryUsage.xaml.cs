@@ -28,12 +28,8 @@ namespace MR_Performance_Visualization
             InitializeComponent();
 
             IsLoading = false;
-            int graphStep = 0;
             //get an instance of the trace file parser singleton
-            TraceFileParserSingleton tfps = TraceFileParserSingleton.Instance;
-
-            //Reading the file and getting all global processes
-            List<GlobalProcess> list = new List<GlobalProcess>();
+            tfps = TraceFileParserSingleton.Instance;
 
             //get the path to  the .utr here. If file provided, get processes
             if (filepath != "")
@@ -42,58 +38,70 @@ namespace MR_Performance_Visualization
                 IsLoading = true;
                 tfps.ParseTraceFile(filepath);
                 IsLoading = false;
-                ChartValues<double> gcpuValues = new ChartValues<double>();
-                ChartValues<double> ghcValues = new ChartValues<double>();
-
-                //temp lists
-                var tempGcpuValues = new List<double>();
-                var tempGhcValues = new List<double>();
-                var tempLabels = new List<string>();
-
-                //get list from singleton
-                list = tfps.GlobalProcessList;
-                Console.WriteLine("list.Count: " + list.Count);
-
-                foreach (GlobalProcess p in list)
+                GetGlobalData();
+            }
+            else
+            {
+                if (tfps.GlobalProcessList != null && tfps.GlobalProcessList.Count > 0)
                 {
-                    if (p.Gcpu > 0) tempGcpuValues.Add(p.Gcpu);
-                    if (p.Ghc > 0) tempGhcValues.Add((double)p.Ghc);
-                    tempLabels.Add(p.Timestamp);
+                    //get global data
+                    GetGlobalData();
                 }
-                //add to values
-                gcpuValues.AddRange(tempGcpuValues);
-                ghcValues.AddRange(tempGhcValues);
+            }
 
-                //handle labels
-                Labels = tempLabels.ToArray();
-                graphStep = tempLabels.Count / 10;
-                Console.WriteLine("graph step is: " + graphStep);
+            DataContext = this;
+        }
 
-                //set series data to accessible attribute
-                CPUSeriesCollection = new SeriesCollection
+        private void GetGlobalData()
+        {
+
+            ChartValues<double> gcpuValues = new ChartValues<double>();
+            ChartValues<double> ghcValues = new ChartValues<double>();
+
+            //temp lists
+            var tempGcpuValues = new List<double>();
+            var tempGhcValues = new List<double>();
+            var tempLabels = new List<string>();
+
+            foreach (GlobalProcess p in tfps.GlobalProcessList)
+            {
+                if (p.Gcpu > 0) tempGcpuValues.Add(p.Gcpu);
+                if (p.Ghc > 0) tempGhcValues.Add((double)p.Ghc);
+                tempLabels.Add(p.Timestamp);
+            }
+            //add to values
+            gcpuValues.AddRange(tempGcpuValues);
+            ghcValues.AddRange(tempGhcValues);
+
+            //handle labels
+            Labels = tempLabels.ToArray();
+
+            //set series data to accessible attribute
+            CPUSeriesCollection = new SeriesCollection
                 {
                     new LineSeries
                     {
                         Title = "Gcpu",
-                        Values = gcpuValues
+                        Values = gcpuValues,
+                        PointGeometry = null
                     }
                 };
-                // handle counts series
-                HCSeriesCollection = new SeriesCollection
+            // handle counts series
+            HCSeriesCollection = new SeriesCollection
                 {
                     new LineSeries
                     {
                         Title = "Ghc",
-                        Values = ghcValues
+                        Values = ghcValues,
+                        PointGeometry = null
                     }
                 };
-            }// if no file path provided
-            DataContext = this;
         }
         //accessible data
         public SeriesCollection CPUSeriesCollection { get; set; }
         public SeriesCollection HCSeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public bool IsLoading { get; set; }
+        private TraceFileParserSingleton tfps;
     }
 }
