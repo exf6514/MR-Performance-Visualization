@@ -42,7 +42,8 @@ namespace MR_Performance_Visualization
 
         private void PowerGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+           //Creates a left click exception. Handler isn't necesarry.
+           // DragMove();
         }
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)

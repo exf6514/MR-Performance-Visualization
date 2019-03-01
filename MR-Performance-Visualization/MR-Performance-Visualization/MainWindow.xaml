@@ -70,18 +70,18 @@
                                     </StackPanel>
                                 </Border>
                             </Button>
-                            <TextBlock VerticalAlignment="Center" Padding="10 0" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><TextBlock x:Name="files_analysed">3</TextBlock> file analysed</TextBlock>
-                            <Button x:Name="AddFiles_Button" Width="25" Height="25" Foreground="{DynamicResource Main_App_Color}" VerticalAlignment="Center" Click="AddFiles_Button_Click">
+                            <TextBlock VerticalAlignment="Center" Padding="10 0" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><TextBlock x:Name="files_analysed">3</TextBlock> files analysed</TextBlock>
+                            <Button x:Name="AddFiles_Button" Width="25" Height="24" Foreground="{DynamicResource Main_App_Color}" VerticalAlignment="Bottom" Click="AddFiles_Button_Click" Margin="0,0,0,8">
                                 <Button.Template>
                                     <ControlTemplate TargetType="{x:Type Button}">
                                         <Grid>
-                                            <Ellipse Stroke="{DynamicResource Main_App_Color}" StrokeThickness="1"/>
+                                            <Ellipse Stroke="{DynamicResource Main_App_Color}" StrokeThickness="4" Width="Auto" Height="24" VerticalAlignment="Bottom"/>
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Grid>
                                     </ControlTemplate>
                                 </Button.Template>
 
-                                <materialDesign:PackIcon Width="15" Height="15" Kind="Add" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <materialDesign:PackIcon Width="25" Height="24" Kind="AddCircle" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Button>
                         </StackPanel>
                     </Grid>
@@ -90,5 +90,5 @@
         </StackPanel>
 
     </Grid>
-    
+
 </Window>
