@@ -84,28 +84,70 @@ namespace MR_Performance_Visualization
                         switch (comparator)
                         {
                             case ">":
-                                if (p.CPU > double.Parse(searchValue))
-                                {
-                                    filteredValues.Add(p);
-                                }
+                                if (p.CPU > double.Parse(searchValue)) filteredValues.Add(p);
                                 break;
                             case ">=":
+                                if (p.CPU >= double.Parse(searchValue)) filteredValues.Add(p);
                                 break;
                             case "=":
+                                if (p.CPU == double.Parse(searchValue)) filteredValues.Add(p);
                                 break;
                             case "<=":
+                                if (p.CPU <= double.Parse(searchValue)) filteredValues.Add(p);
                                 break;
                             case "<":
+                                if (p.CPU < double.Parse(searchValue)) filteredValues.Add(p);
                                 break;
                             default:
                                 break;
                         }
                     } else if (metricName == "HC")
-                    {
+                    { 
+                        //compare p.HC to searchValue based on comparator
+                        switch (comparator)
+                        {
+                            case ">":
+                                if (p.HC > double.Parse(searchValue)) filteredValues.Add(p);
+                                break;
+                            case ">=":
+                                if (p.HC >= double.Parse(searchValue)) filteredValues.Add(p);
+                                break;
+                            case "=":
+                                if (p.HC == double.Parse(searchValue)) filteredValues.Add(p);
+                                break;
+                            case "<=":
+                                if (p.HC <= double.Parse(searchValue)) filteredValues.Add(p);
+                                break;
+                            case "<":
+                                if (p.HC < double.Parse(searchValue)) filteredValues.Add(p);
+                                break;
+                            default:
+                                break;
+                        }
 
                     } else if (metricName == "PRIV")
                     {
-
+                        //compare p.PRIV to searchValue based on comparator
+                        switch (comparator)
+                        {
+                            case ">":
+                                if (p.PRIV > double.Parse(searchValue)) filteredValues.Add(p);
+                                break;
+                            case ">=":
+                                if (p.PRIV >= double.Parse(searchValue)) filteredValues.Add(p);
+                                break;
+                            case "=":
+                                if (p.PRIV == double.Parse(searchValue)) filteredValues.Add(p);
+                                break;
+                            case "<=":
+                                if (p.PRIV <= double.Parse(searchValue)) filteredValues.Add(p);
+                                break;
+                            case "<":
+                                if (p.PRIV < double.Parse(searchValue)) filteredValues.Add(p);
+                                break;
+                            default:
+                                break;
+                        }
                     }
 
                 }//foreach value

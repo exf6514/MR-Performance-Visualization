@@ -34,6 +34,7 @@ namespace MR_Performance_Visualization
         public List<GlobalProcess> GlobalProcessList { get; set; }
         public List<string> ProcessNames { get; set; }
         public Dictionary<string, List<Process>> ProcessDictionary { get; set; } // name of process -> list of Process 'points' that contains ts, CPU, PRIV, and HC
+        public string lastProcessName { get; set; }
 
         public void ParseTraceFile(string path)
         {
