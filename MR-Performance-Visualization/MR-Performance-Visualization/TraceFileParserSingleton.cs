@@ -46,10 +46,12 @@ namespace MR_Performance_Visualization
             ProcessDictionary = new Dictionary<string, List<Process>>();
             HashSet<string> uniqueProcessNames = new HashSet<string>();
 
-            var pCount = 0;
             foreach (string line in lines)
             {
-                pCount++;
+                //counting just to get first and last time stamps / dates
+
+
+
                 string[] row = line.Split('|');
 
                 if (row[4].StartsWith("Global"))
@@ -196,7 +198,6 @@ namespace MR_Performance_Visualization
 
             Console.WriteLine("finished");
             Console.WriteLine("Globals amount: " + tempGlobalProcessList.Count);
-            Console.WriteLine("Process amount: " + (pCount - tempGlobalProcessList.Count));
             Console.WriteLine("Unique process names: " + uniqueProcessNames.Count);
             this.GlobalProcessList = tempGlobalProcessList;
             this.ProcessNames = ProcessDictionary.Keys.ToList();
