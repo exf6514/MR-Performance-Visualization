@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +25,8 @@ namespace MR_Performance_Visualization
         public FilterDataWindow()
         {
             InitializeComponent();
+
+            filterProcesses = new List<Process>();
 
             List<string> metrics = new List<string>(new string[] { "CPU", "HC", "PRIV" });
             List<string> comparators = new List<string>(new string[] { ">", ">=", "=", "<=", "<" });
@@ -57,7 +61,60 @@ namespace MR_Performance_Visualization
 
         private void Search_btn_Click(object sender, RoutedEventArgs e)
         {
+            //get the values from the interface
+            string processName = process_name_cb.SelectedItem != null ? process_name_cb.SelectedItem.ToString() : "";
+            string metricName = metric_cb.SelectedItem != null ? metric_cb.SelectedItem.ToString() : "";
+            string comparator = comparator_cb.SelectedItem != null ? comparator_cb.SelectedItem.ToString() : "";
+            string searchValue = value_tb.Text;
 
-        }
+            List<Process> filteredValues = new List<Process>();
+
+            if (processName != "" && tfps.ProcessDictionary != null)
+            {
+                List<Process> processesValues = tfps.ProcessDictionary[processName];
+                
+                this.Cursor = Cursors.Wait;
+                for (int i = 0; i < processesValues.Count; i++) {
+
+                    Process p = processesValues[i];
+
+                    if (metricName == "CPU")
+                    {
+                        //compare p.CPU to searchValue based on comparator
+                        switch (comparator)
+                        {
+                            case ">":
+                                if (p.CPU > double.Parse(searchValue))
+                                {
+                                    filteredValues.Add(p);
+                                }
+                                break;
+                            case ">=":
+                                break;
+                            case "=":
+                                break;
+                            case "<=":
+                                break;
+                            case "<":
+                                break;
+                            default:
+                                break;
+                        }
+                    } else if (metricName == "HC")
+                    {
+
+                    } else if (metricName == "PRIV")
+                    {
+
+                    }
+
+                }//foreach value
+                this.Cursor = Cursors.Arrow;
+                Console.WriteLine(filteredValues.Count);
+                filterProcesses = filteredValues;
+                process_dg.ItemsSource = filteredValues;
+            }
+        }//Search_btn_clicked()
+        public List<Process> filterProcesses { get; set; }
     }
 }

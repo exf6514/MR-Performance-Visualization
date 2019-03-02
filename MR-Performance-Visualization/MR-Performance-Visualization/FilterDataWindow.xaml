@@ -29,6 +29,16 @@
             </StackPanel>
             <Button x:Name="search_btn" Background="{DynamicResource Main_App_Color}" Margin="5" Content="Search" d:LayoutOverrides="Height" Click="Search_btn_Click"/>
         </StackPanel>
+        <DataGrid x:Name="process_dg" HorizontalAlignment="Left" Height="430" Margin="290,10,0,0" VerticalAlignment="Top" Width="470" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Timestamp" Binding="{Binding Timestamp}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Process" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="CPU" Binding="{Binding CPU}"></DataGridTextColumn>
+                <DataGridTextColumn Header="HC" Binding="{Binding HC}"></DataGridTextColumn>
+                <DataGridTextColumn Header="PRIV" Binding="{Binding PRIV}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ProgressBar x:Name="pbStatus" Visibility="Hidden" HorizontalAlignment="Left" Height="20" Margin="325,217,0,0" VerticalAlignment="Top" Width="400"/>
 
     </Grid>
 </UserControl>
