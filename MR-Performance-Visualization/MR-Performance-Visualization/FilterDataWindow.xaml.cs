@@ -71,8 +71,19 @@ namespace MR_Performance_Visualization
 
             if (processName != "" && tfps.ProcessDictionary != null)
             {
-                List<Process> processesValues = tfps.ProcessDictionary[processName];
+                List<Process> processesValues = new List<Process>();
                 
+                if (processName == "Any Process")
+                {
+                    foreach (List<Process> pl in tfps.ProcessDictionary.Values)
+                    {
+                        processesValues.AddRange(pl);
+                    }
+                } else
+                {
+                    processesValues = tfps.ProcessDictionary[processName];
+                }
+
                 this.Cursor = Cursors.Wait;
                 for (int i = 0; i < processesValues.Count; i++) {
 
