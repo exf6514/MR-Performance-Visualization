@@ -34,6 +34,7 @@ namespace MR_Performance_Visualization
         public List<GlobalProcess> GlobalProcessList { get; set; }
         public List<string> ProcessNames { get; set; }
         public Dictionary<string, List<Process>> ProcessDictionary { get; set; } // name of process -> list of Process 'points' that contains ts, CPU, PRIV, and HC
+        public string lastProcessName { get; set; }
 
         public void ParseTraceFile(string path)
         {
@@ -171,7 +172,7 @@ namespace MR_Performance_Visualization
                         }// for each column in usertext
 
                         //create new process data object and add it to the dictionary
-                        Process processData = new Process(timestamp, hc, null, priv, null, cpu, null);
+                        Process processData = new Process(timestamp, processName, hc, null, priv, null, cpu, null);
                         //check for keys and add to data
                         if (ProcessDictionary.ContainsKey(processName))
                         {

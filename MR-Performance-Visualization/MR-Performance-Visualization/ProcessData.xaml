@@ -14,7 +14,7 @@
         <!-- CPU CHART -->
         <Grid Margin="10,65,410,200">
             <Grid x:Name="PrivGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="340">
-                <lvc:CartesianChart Series="{Binding ProcessCpu_SC}" Margin="0,0,0,0" Zoom="X" DisableAnimations="True">
+                <lvc:CartesianChart Series="{Binding ProcessPriv_SC}" Margin="0,0,0,0" Zoom="X" DisableAnimations="True">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" Labels="{Binding Labels}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Position="LeftBottom"></lvc:Axis>
                     </lvc:CartesianChart.AxisX>
@@ -40,7 +40,7 @@
         <!-- PRIV CHART -->
         <Grid Margin="10,250,10,10">
             <Grid x:Name="CPUGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="175" Width="750">
-                <lvc:CartesianChart Series="{Binding ProcessPriv_SC}" Margin="0,0,0,0" Zoom="X" DisableAnimations="True">
+                <lvc:CartesianChart Series="{Binding ProcessCpu_SC}" Margin="0,0,0,0" Zoom="X" DisableAnimations="True">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Foreground="{DynamicResource Main_Text_Color}" Labels="{Binding Labels}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}" Title="Timestamp" Position="LeftBottom"></lvc:Axis>
                     </lvc:CartesianChart.AxisX>

@@ -40,6 +40,15 @@ namespace MR_Performance_Visualization
                     process_names_cb.Items.Add(name);
                 }
             }
+
+            //check if they've searched before
+            if (tfps.lastProcessName != null)
+            {
+                int index = process_names_cb.Items.IndexOf(tfps.lastProcessName);
+                process_names_cb.SelectedIndex = index;
+                //get data for process
+                GetDataForProcess(tfps.lastProcessName);
+            }
         }
 
         private void Search_Button_Click(object sender, RoutedEventArgs e)
@@ -48,40 +57,50 @@ namespace MR_Performance_Visualization
             if(index > 0)
             {
                 string processName = process_names_cb.SelectedItem.ToString();
+
+                //set last searched for
+                tfps.lastProcessName = processName;
+
                 Console.WriteLine("Looking for this process: " + processName);
-                if (tfps.ProcessDictionary != null)
+                GetDataForProcess(processName);
+            }
+        }//search button clicked
+
+        private void GetDataForProcess(string processName)
+        {
+            if (tfps.ProcessDictionary != null)
+            {
+                List<Process> values = tfps.ProcessDictionary[processName];
+
+                ChartValues<double> cpuValues = new ChartValues<double>();
+                ChartValues<double> hcValues = new ChartValues<double>();
+                ChartValues<double> privValues = new ChartValues<double>();
+
+
+                //temp lists
+                var tempcpuValues = new List<double>();
+                var temphcValues = new List<double>();
+                var tempprivValues = new List<double>();
+                var tempLabels = new List<string>();
+
+                Console.Write("Found ");
+                Console.Write(values.Count);
+                Console.WriteLine(" values for this specific process");
+
+                foreach (Process p in values)
                 {
-                    List<Process> values = tfps.ProcessDictionary[processName];
+                    if (p.CPU > 0) tempcpuValues.Add(p.CPU);
+                    if (p.HC > 0) temphcValues.Add(p.HC);
+                    if (p.PRIV > 0) tempprivValues.Add(p.PRIV);
+                    tempLabels.Add(p.Timestamp);
+                }
 
-                    ChartValues<double> cpuValues = new ChartValues<double>();
-                    ChartValues<double> hcValues = new ChartValues<double>();
-                    ChartValues<double> privValues = new ChartValues<double>();
+                cpuValues.AddRange(tempcpuValues);
+                hcValues.AddRange(temphcValues);
+                privValues.AddRange(tempprivValues);
+                Labels = tempLabels.ToArray();
 
-
-                    //temp lists
-                    var tempcpuValues = new List<double>();
-                    var temphcValues = new List<double>();
-                    var tempprivValues = new List<double>();
-                    var tempLabels = new List<string>();
-
-                    Console.Write("Found ");
-                    Console.Write(values.Count);
-                    Console.WriteLine(" values for this specific process");
-
-                    foreach(Process p in values)
-                    {
-                        if (p.CPU > 0) tempcpuValues.Add(p.CPU);
-                        if (p.HC > 0) temphcValues.Add(p.HC);
-                        if (p.PRIV > 0) tempprivValues.Add(p.PRIV);
-                        tempLabels.Add(p.Timestamp);
-                    }
-
-                    cpuValues.AddRange(tempcpuValues);
-                    hcValues.AddRange(temphcValues);
-                    privValues.AddRange(tempprivValues);
-                    Labels = tempLabels.ToArray();
-
-                    ProcessCpu_SC = new SeriesCollection
+                ProcessCpu_SC = new SeriesCollection
                     {
                         new LineSeries
                         {
@@ -91,7 +110,7 @@ namespace MR_Performance_Visualization
                         }
                     };
 
-                    ProcessHc_SC = new SeriesCollection
+                ProcessHc_SC = new SeriesCollection
                     {
                         new LineSeries
                         {
@@ -101,7 +120,7 @@ namespace MR_Performance_Visualization
                         }
                     };
 
-                    ProcessPriv_SC = new SeriesCollection
+                ProcessPriv_SC = new SeriesCollection
                     {
                         new LineSeries
                         {
@@ -111,10 +130,9 @@ namespace MR_Performance_Visualization
                         }
                     };
 
-                }// if dictionary exists
-            }
+            }// if dictionary exists
             DataContext = this;
-        }//search button clicked
+        }
 
         public SeriesCollection ProcessCpu_SC { get; set; }
         public SeriesCollection ProcessHc_SC { get; set; }

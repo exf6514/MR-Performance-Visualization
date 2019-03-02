@@ -69,13 +69,14 @@ namespace MR_Performance_Visualization
                     MainContentGrid.Children.Add(new UserControlMemoryUsage());
                     break;
                 case 1:
-                    MainContentGrid.Children.Clear();
-                    //MainContentGrid.Children.Add(new UserControlMemoryUsage());
-                    break;
-                case 2:
                     //PER PROCESS PAGE
                     MainContentGrid.Children.Clear();
                     MainContentGrid.Children.Add(new ProcessData());
+                    break;
+                case 2:
+                    //FILTER PAGE
+                    MainContentGrid.Children.Clear();
+                    MainContentGrid.Children.Add(new FilterDataWindow());
                     break;
                 default:
                     break;
