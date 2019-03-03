@@ -34,7 +34,7 @@
             <ComboBox x:Name="metric_cb" VerticalAlignment="Stretch" Margin="5"/>
             <Label x:Name="is_lable" Content="Is"/>
             <ComboBox x:Name="comparator_cb" VerticalAlignment="Stretch" Margin="5"/>
-            <Label x:Name="than_lable" Content="Than"/>
+            <Label x:Name="than_label" Content="Than"/>
             <TextBox x:Name="value_tb" Margin="5"></TextBox>
             <!--<Label x:Name="between_label" Content="Between"/>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Width="250">
@@ -47,6 +47,7 @@
                 <materialDesign:TimePicker x:Name="end_tp" Width="110" Margin="5"></materialDesign:TimePicker>
             </StackPanel>-->
             <Button x:Name="search_btn" Background="{DynamicResource Main_App_Color}" Margin="5" Content="Search" d:LayoutOverrides="Height" Click="Search_btn_Click"/>
+            <Label x:Name="Associated_Trace_File_label" Content="UTR File: "/>
         </StackPanel>
         <DataGrid x:Name="process_dg" HorizontalAlignment="Left" Height="430" Margin="290,10,0,0" VerticalAlignment="Top" Width="470" AutoGenerateColumns="False">
             <DataGrid.Columns>
