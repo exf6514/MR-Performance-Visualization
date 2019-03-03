@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -69,7 +70,7 @@ namespace MR_Performance_Visualization
 
             List<Process> filteredValues = new List<Process>();
 
-            if (processName != "" && tfps.ProcessDictionary != null)
+            if (processName != "" && tfps.ProcessDictionary != null && searchValue != "")
             {
                 List<Process> processesValues = new List<Process>();
                 
@@ -162,12 +163,68 @@ namespace MR_Performance_Visualization
                     }
 
                 }//foreach value
-                this.Cursor = Cursors.Arrow;
-                Console.WriteLine(filteredValues.Count);
+
+                this.Cursor = Cursors.Arrow; //back to useable cursor
                 filterProcesses = filteredValues;
-                process_dg.ItemsSource = filteredValues;
+                process_dg.ItemsSource = filteredValues; //set data for table
+
+                //store last searched query
+                LastSearchString = processName + "|" + metricName + "|" + comparator + "|" + searchValue;
             }
         }//Search_btn_clicked()
+
+        private void Load_Button_Click(object sender, RoutedEventArgs e)
+        {
+            //read in data
+            
+            //parse data
+
+            //populate the search elements
+
+            //populate the table
+        }
+
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Set a variable to the Documents path.
+            string docPath =
+              Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            Console.WriteLine("saving file to: " + docPath);
+
+            if (tfps.Filename != null && tfps.Filename != "")
+            {
+
+                using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(docPath, tfps.Filename + "_results.txt")))
+                {
+                    //associated trace file 
+                    Console.WriteLine("associated trace file: '" + tfps.Filename + "'");
+                    outputFile.WriteLine(tfps.Filename);
+
+                    //write latest query
+                    Console.WriteLine("the last searched query is: '" + LastSearchString + "'");
+                    outputFile.WriteLine(LastSearchString);
+
+                    //write the latest filtered data
+                    foreach (Process p in filterProcesses)
+                    {
+                        String[] values = { p.Timestamp, p.Name, p.CPU.ToString(), p.HC.ToString(), p.PRIV.ToString() };
+                        String joined = String.Join("|", values);
+                        Console.WriteLine(joined);
+                        outputFile.WriteLine(joined);
+                    }
+
+                    //provide the file path to the user
+                    MessageBox.Show(
+                        "Your result file was saved to: " + docPath,
+                        "Result File Created!"
+                    );//message box
+
+                }
+
+            }// if trace file name exists
+        }
+
         public List<Process> filterProcesses { get; set; }
+        private string LastSearchString { get; set; } //the last search the user made. Used for results file
     }
 }

@@ -9,6 +9,25 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="260">
+            <StackPanel Orientation="Horizontal">
+                <Button Click="Load_Button_Click" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" VerticalAlignment="Center">
+                    <Border BorderBrush="{DynamicResource Main_App_Color}" BorderThickness="1" CornerRadius="0">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <materialDesign:PackIcon  Foreground="{DynamicResource Main_App_Color}" Kind="Upload" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                            <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><Run Text="Load Previous Results"/></TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Button>
+                <Button Click="Save_Button_Click" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" VerticalAlignment="Center">
+                    <Border BorderBrush="{DynamicResource Main_App_Color}" BorderThickness="1" CornerRadius="0">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <materialDesign:PackIcon  Foreground="{DynamicResource Main_App_Color}" Kind="ContentSaveAll" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                            <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><Run Text="Save Results"/></TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Button>
+            </StackPanel>
+            
             <Label x:Name="find_label" Content="Find:"/>
             <ComboBox x:Name="process_name_cb" VerticalAlignment="Stretch" Margin="5"/>
             <Label x:Name="where_label" Content="Where"/>

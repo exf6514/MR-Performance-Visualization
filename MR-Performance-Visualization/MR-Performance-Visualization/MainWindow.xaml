@@ -62,15 +62,7 @@
                             </Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
-                            <Button Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" VerticalAlignment="Center">
-                                <Border BorderBrush="{DynamicResource Main_App_Color}" BorderThickness="1" CornerRadius="0">
-                                    <StackPanel Orientation="Horizontal" Margin="5">
-                                        <materialDesign:PackIcon  Foreground="{DynamicResource Main_App_Color}" Kind="ContentSaveAll" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0"/>
-                                        <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><Run Text="Save Results"/></TextBlock>
-                                    </StackPanel>
-                                </Border>
-                            </Button>
-                            <TextBlock VerticalAlignment="Center" Padding="10 0" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><TextBlock x:Name="files_analysed">3</TextBlock> files analysed</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Padding="10 0" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><TextBlock x:Name="files_analysed"></TextBlock>Load Trace File</TextBlock>
                             <Button x:Name="AddFiles_Button" Width="25" Height="24" Foreground="{DynamicResource Main_App_Color}" VerticalAlignment="Bottom" Click="AddFiles_Button_Click" Margin="0,0,0,8">
                                 <Button.Template>
                                     <ControlTemplate TargetType="{x:Type Button}">
