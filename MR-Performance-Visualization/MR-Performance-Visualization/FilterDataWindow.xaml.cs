@@ -170,7 +170,7 @@ namespace MR_Performance_Visualization
 
                 this.Cursor = Cursors.Arrow; //back to useable cursor
                 filterProcesses = filteredValues;
-                process_dg.ItemsSource = filteredValues; //set data for table
+                process_dg.ItemsSource = filterProcesses; //set data for table
                 Associated_Trace_File_label.Content = "UTR File: " + tfps.Filename;
                 //store last searched query
                 LastSearchString = processName + "|" + metricName + "|" + comparator + "|" + searchValue;
@@ -213,8 +213,10 @@ namespace MR_Performance_Visualization
                 //parse process data
 
                 lines = lines.Where((item, index) => index > 1).ToArray(); //gets rid of first two lines, leaving process data;
+                
                 if (lines.Count() > 0)
                 {
+                    filterProcesses = new List<Process>();//empty list
                     foreach (string line in lines)
                     {
                         string[] data = line.Split('|'); //timestamp, name, cpu, hc, priv
