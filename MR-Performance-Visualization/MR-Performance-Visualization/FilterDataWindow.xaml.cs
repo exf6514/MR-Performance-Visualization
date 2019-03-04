@@ -58,7 +58,7 @@ namespace MR_Performance_Visualization
                 }
                 process_name_cb.SelectedIndex = 0;
 
-                Associated_Trace_File_label.Content = "UTR File: " + tfps.Filename;
+                Associated_Trace_File_label.Text = tfps.Filename;
             }
 
         }
@@ -171,7 +171,7 @@ namespace MR_Performance_Visualization
                 this.Cursor = Cursors.Arrow; //back to useable cursor
                 filterProcesses = filteredValues;
                 process_dg.ItemsSource = filterProcesses; //set data for table
-                Associated_Trace_File_label.Content = "UTR File: " + tfps.Filename;
+                Associated_Trace_File_label.Text = tfps.Filename;
                 //store last searched query
                 LastSearchString = processName + "|" + metricName + "|" + comparator + "|" + searchValue;
             }
@@ -191,7 +191,7 @@ namespace MR_Performance_Visualization
                 string[] lines = File.ReadAllLines(filepath);
 
                 //populate the search items
-                Associated_Trace_File_label.Content = "UTR File: " + lines[0];
+                Associated_Trace_File_label.Text = lines[0];
 
                 string[] queryParts = lines[1].Split('|'); // name, metric, comparator, value
 

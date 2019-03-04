@@ -18,7 +18,7 @@
             <StackPanel>
                 <Grid Height="45" VerticalAlignment="Top">
                     <Border BorderThickness="0 0 0 1" BorderBrush="{DynamicResource Main_Text_Color}">
-                        <TextBox Margin="10,0,10,0" Text="Global Charts" FontWeight="Bold" Foreground="{DynamicResource Main_Text_Color}" FontFamily="{DynamicResource Main_App_Font_Family}" VerticalAlignment="Bottom" BorderBrush="{x:Null}" FontSize="{DynamicResource Main_App_Font_Size_Big}"/>
+                        <TextBlock Margin="10,0,10,0" Text="Global Charts" FontWeight="Bold" Foreground="{DynamicResource Main_Text_Color}" FontFamily="{DynamicResource Main_App_Font_Family}" VerticalAlignment="Bottom" FontSize="{DynamicResource Main_App_Font_Size_Big}"/>
                     </Border>
                 </Grid>
                 <StackPanel Margin="0">

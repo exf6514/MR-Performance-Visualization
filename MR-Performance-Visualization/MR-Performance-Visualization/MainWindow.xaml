@@ -16,7 +16,7 @@
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Memory" Width="30" Height="30" VerticalAlignment="Center" Margin="25,5,5,5"/>
-                        <TextBlock Text="GCPU Chart" VerticalAlignment="Center" Margin="20 0" FontSize="{DynamicResource Main_App_Font_Size_Big}" FontFamily="{DynamicResource Main_App_Font_Family}"/>
+                        <TextBlock Text="Global Charts" VerticalAlignment="Center" Margin="20 0" FontSize="{DynamicResource Main_App_Font_Size_Big}" FontFamily="{DynamicResource Main_App_Font_Family}"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60">
@@ -62,7 +62,7 @@
                             </Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
-                            <TextBlock VerticalAlignment="Center" Padding="10 0" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><TextBlock x:Name="files_analysed"></TextBlock>Load Trace File</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Padding="10 0" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}">Load Trace File</TextBlock>
                             <Button x:Name="AddFiles_Button" Width="25" Height="24" Foreground="{DynamicResource Main_App_Color}" VerticalAlignment="Bottom" Click="AddFiles_Button_Click" Margin="0,0,0,8">
                                 <Button.Template>
                                     <ControlTemplate TargetType="{x:Type Button}">

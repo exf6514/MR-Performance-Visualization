@@ -21,6 +21,8 @@ namespace MR_Performance_Visualization
     /// </summary>
     public partial class WelcomeWindow : Window
     {
+        Utils utils = new Utils();
+
         public WelcomeWindow()
         {
             InitializeComponent();
@@ -95,6 +97,14 @@ namespace MR_Performance_Visualization
 
                 }//using stream reader
             }//dialog
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            utils.ApplyEffect(this);
+            settingsWindow.ShowDialog();
+            utils.ClearEffect(this);
         }
     }
 }
