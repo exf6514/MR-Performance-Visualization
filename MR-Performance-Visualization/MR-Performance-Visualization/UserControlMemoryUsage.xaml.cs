@@ -23,7 +23,7 @@ namespace MR_Performance_Visualization
     public partial class UserControlMemoryUsage : UserControl
     {
 
-        public UserControlMemoryUsage(string filepath = "")
+        public UserControlMemoryUsage(string filepath = "", string filename = "")
         {
             InitializeComponent();
 
@@ -36,7 +36,7 @@ namespace MR_Performance_Visualization
             {
                 Console.WriteLine("File path provided: " + filepath);
                 IsLoading = true;
-                tfps.ParseTraceFile(filepath);
+                tfps.ParseTraceFile(filepath, filename);
                 IsLoading = false;
                 GetGlobalData();
             }

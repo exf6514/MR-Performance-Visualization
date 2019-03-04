@@ -95,8 +95,9 @@ namespace MR_Performance_Visualization
             if(ofd.ShowDialog() == true)
             {
                 string filepath = ofd.FileName;
+                string filename = ofd.SafeFileName;
                 MainContentGrid.Children.Clear();
-                MainContentGrid.Children.Add(new UserControlMemoryUsage(filepath));
+                MainContentGrid.Children.Add(new UserControlMemoryUsage(filepath, filename));
             }
 
         }

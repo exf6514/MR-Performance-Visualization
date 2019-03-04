@@ -42,12 +42,12 @@ namespace MR_Performance_Visualization
             }
 
             //check if they've searched before
-            if (tfps.lastProcessName != null)
+            if (tfps.LastProcessName != null)
             {
-                int index = process_names_cb.Items.IndexOf(tfps.lastProcessName);
+                int index = process_names_cb.Items.IndexOf(tfps.LastProcessName);
                 process_names_cb.SelectedIndex = index;
                 //get data for process
-                GetDataForProcess(tfps.lastProcessName);
+                GetDataForProcess(tfps.LastProcessName);
             }
         }
 
@@ -59,7 +59,7 @@ namespace MR_Performance_Visualization
                 string processName = process_names_cb.SelectedItem.ToString();
 
                 //set last searched for
-                tfps.lastProcessName = processName;
+                tfps.LastProcessName = processName;
 
                 Console.WriteLine("Looking for this process: " + processName);
                 GetDataForProcess(processName);

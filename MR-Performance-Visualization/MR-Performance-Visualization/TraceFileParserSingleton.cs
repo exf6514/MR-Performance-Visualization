@@ -34,11 +34,13 @@ namespace MR_Performance_Visualization
         public List<GlobalProcess> GlobalProcessList { get; set; }
         public List<string> ProcessNames { get; set; }
         public Dictionary<string, List<Process>> ProcessDictionary { get; set; } // name of process -> list of Process 'points' that contains ts, CPU, PRIV, and HC
-        public string lastProcessName { get; set; }
+        public string LastProcessName { get; set; }
+        public string Filename { get; set; }
 
-        public void ParseTraceFile(string path)
+        public void ParseTraceFile(string path, string _filename)
         {
             Console.WriteLine("Start reading");
+            Filename = _filename;
             string[] lines = System.IO.File.ReadAllLines(path);
             Console.WriteLine("Read finished");
 
@@ -46,10 +48,12 @@ namespace MR_Performance_Visualization
             ProcessDictionary = new Dictionary<string, List<Process>>();
             HashSet<string> uniqueProcessNames = new HashSet<string>();
 
-            var pCount = 0;
             foreach (string line in lines)
             {
-                pCount++;
+                //counting just to get first and last time stamps / dates
+
+
+
                 string[] row = line.Split('|');
 
                 if (row[4].StartsWith("Global"))
@@ -196,7 +200,6 @@ namespace MR_Performance_Visualization
 
             Console.WriteLine("finished");
             Console.WriteLine("Globals amount: " + tempGlobalProcessList.Count);
-            Console.WriteLine("Process amount: " + (pCount - tempGlobalProcessList.Count));
             Console.WriteLine("Unique process names: " + uniqueProcessNames.Count);
             this.GlobalProcessList = tempGlobalProcessList;
             this.ProcessNames = ProcessDictionary.Keys.ToList();

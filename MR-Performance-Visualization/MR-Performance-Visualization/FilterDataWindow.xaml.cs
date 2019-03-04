@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -30,6 +32,19 @@ namespace MR_Performance_Visualization
 
             List<string> metrics = new List<string>(new string[] { "CPU", "HC", "PRIV" });
             List<string> comparators = new List<string>(new string[] { ">", ">=", "=", "<=", "<" });
+            // set up combo boxes
+            foreach (string m in metrics)
+            {
+                metric_cb.Items.Add(m);
+            }
+            metric_cb.SelectedIndex = 0;
+
+            foreach (string c in comparators)
+            {
+                comparator_cb.Items.Add(c);
+            }
+            comparator_cb.SelectedIndex = 0;
+
 
             tfps = TraceFileParserSingleton.Instance;
 
@@ -43,17 +58,7 @@ namespace MR_Performance_Visualization
                 }
                 process_name_cb.SelectedIndex = 0;
 
-                foreach (string m in metrics)
-                {
-                    metric_cb.Items.Add(m);
-                }
-                metric_cb.SelectedIndex = 0;
-
-                foreach (string c in comparators)
-                {
-                    comparator_cb.Items.Add(c);
-                }
-                comparator_cb.SelectedIndex = 0;
+                Associated_Trace_File_label.Content = "UTR File: " + tfps.Filename;
             }
 
         }
@@ -69,10 +74,21 @@ namespace MR_Performance_Visualization
 
             List<Process> filteredValues = new List<Process>();
 
-            if (processName != "" && tfps.ProcessDictionary != null)
+            if (processName != "" && tfps.ProcessDictionary != null && searchValue != "")
             {
-                List<Process> processesValues = tfps.ProcessDictionary[processName];
+                List<Process> processesValues = new List<Process>();
                 
+                if (processName == "Any Process")
+                {
+                    foreach (List<Process> pl in tfps.ProcessDictionary.Values)
+                    {
+                        processesValues.AddRange(pl);
+                    }
+                } else
+                {
+                    processesValues = tfps.ProcessDictionary[processName];
+                }
+
                 this.Cursor = Cursors.Wait;
                 for (int i = 0; i < processesValues.Count; i++) {
 
@@ -151,12 +167,120 @@ namespace MR_Performance_Visualization
                     }
 
                 }//foreach value
-                this.Cursor = Cursors.Arrow;
-                Console.WriteLine(filteredValues.Count);
+
+                this.Cursor = Cursors.Arrow; //back to useable cursor
                 filterProcesses = filteredValues;
-                process_dg.ItemsSource = filteredValues;
+                process_dg.ItemsSource = filterProcesses; //set data for table
+                Associated_Trace_File_label.Content = "UTR File: " + tfps.Filename;
+                //store last searched query
+                LastSearchString = processName + "|" + metricName + "|" + comparator + "|" + searchValue;
             }
         }//Search_btn_clicked()
+
+        private void Load_Button_Click(object sender, RoutedEventArgs e)
+        {
+            //read in data
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Result Files|*.txt";
+            ofd.Title = "Select a Result File";
+            ofd.RestoreDirectory = true;
+
+            if (ofd.ShowDialog() == true)
+            {
+                string filepath = ofd.FileName;
+                string[] lines = File.ReadAllLines(filepath);
+
+                //populate the search items
+                Associated_Trace_File_label.Content = "UTR File: " + lines[0];
+
+                string[] queryParts = lines[1].Split('|'); // name, metric, comparator, value
+
+                var nameIndex = process_name_cb.Items.IndexOf(queryParts[0]);
+                if (nameIndex >= 0)
+                {
+                    process_name_cb.SelectedIndex = nameIndex;
+                }
+                else
+                {
+                    int newIndex = process_name_cb.Items.Add(queryParts[0]);
+                    process_name_cb.SelectedIndex = newIndex;
+                }
+
+                metric_cb.SelectedIndex = metric_cb.Items.IndexOf(queryParts[1]);
+                comparator_cb.SelectedIndex = comparator_cb.Items.IndexOf(queryParts[2]);
+                value_tb.Text = queryParts[3];
+
+                //parse process data
+
+                lines = lines.Where((item, index) => index > 1).ToArray(); //gets rid of first two lines, leaving process data;
+                
+                if (lines.Count() > 0)
+                {
+                    filterProcesses = new List<Process>();//empty list
+                    foreach (string line in lines)
+                    {
+                        string[] data = line.Split('|'); //timestamp, name, cpu, hc, priv
+                        Process p = new Process(
+                            data[0],//timestamp
+                            data[1],//name
+                            double.Parse(data[3]),//hc
+                            null,
+                            double.Parse(data[4]),//priv
+                            null,
+                            double.Parse(data[2]),//cpu
+                            null
+                            );
+                        filterProcesses.Add(p);
+                    }
+
+                    process_dg.ItemsSource = filterProcesses;
+
+                }
+
+            }
+        }
+
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Set a variable to the Documents path.
+            string docPath =
+              Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            Console.WriteLine("saving file to: " + docPath);
+
+            if (tfps.Filename != null && tfps.Filename != "")
+            {
+
+                using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(docPath, tfps.Filename + "_results.txt")))
+                {
+                    //associated trace file 
+                    Console.WriteLine("associated trace file: '" + tfps.Filename + "'");
+                    outputFile.WriteLine(tfps.Filename);
+
+                    //write latest query
+                    Console.WriteLine("the last searched query is: '" + LastSearchString + "'");
+                    outputFile.WriteLine(LastSearchString);
+
+                    //write the latest filtered data
+                    foreach (Process p in filterProcesses)
+                    {
+                        String[] values = { p.Timestamp, p.Name, p.CPU.ToString(), p.HC.ToString(), p.PRIV.ToString() };
+                        String joined = String.Join("|", values);
+                        Console.WriteLine(joined);
+                        outputFile.WriteLine(joined);
+                    }
+
+                    //provide the file path to the user
+                    MessageBox.Show(
+                        "Your result file was saved to: " + docPath,
+                        "Result File Created!"
+                    );//message box
+
+                }
+
+            }// if trace file name exists
+        }
+
         public List<Process> filterProcesses { get; set; }
+        private string LastSearchString { get; set; } //the last search the user made. Used for results file
     }
 }

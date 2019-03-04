@@ -9,15 +9,34 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="260">
+            <StackPanel Orientation="Horizontal">
+                <Button Click="Load_Button_Click" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" VerticalAlignment="Center">
+                    <Border BorderBrush="{DynamicResource Main_App_Color}" BorderThickness="1" CornerRadius="0">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <materialDesign:PackIcon  Foreground="{DynamicResource Main_App_Color}" Kind="Upload" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                            <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><Run Text="Load Previous Results"/></TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Button>
+                <Button Click="Save_Button_Click" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" VerticalAlignment="Center">
+                    <Border BorderBrush="{DynamicResource Main_App_Color}" BorderThickness="1" CornerRadius="0">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <materialDesign:PackIcon  Foreground="{DynamicResource Main_App_Color}" Kind="ContentSaveAll" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                            <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Foreground="{DynamicResource Main_Text_Color}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"><Run Text="Save Results"/></TextBlock>
+                        </StackPanel>
+                    </Border>
+                </Button>
+            </StackPanel>
+            
             <Label x:Name="find_label" Content="Find:"/>
             <ComboBox x:Name="process_name_cb" VerticalAlignment="Stretch" Margin="5"/>
             <Label x:Name="where_label" Content="Where"/>
             <ComboBox x:Name="metric_cb" VerticalAlignment="Stretch" Margin="5"/>
             <Label x:Name="is_lable" Content="Is"/>
             <ComboBox x:Name="comparator_cb" VerticalAlignment="Stretch" Margin="5"/>
-            <Label x:Name="than_lable" Content="Than"/>
+            <Label x:Name="than_label" Content="Than"/>
             <TextBox x:Name="value_tb" Margin="5"></TextBox>
-            <Label x:Name="between_label" Content="Between"/>
+            <!--<Label x:Name="between_label" Content="Between"/>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Width="250">
                 <DatePicker x:Name="start_dp" Width="110" Margin="5"></DatePicker>
                 <materialDesign:TimePicker x:Name="start_tp" Width="110" Margin="5"></materialDesign:TimePicker>
@@ -26,8 +45,9 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Width="250">
                 <DatePicker x:Name="end_dp" Width="110" Margin="5"></DatePicker>
                 <materialDesign:TimePicker x:Name="end_tp" Width="110" Margin="5"></materialDesign:TimePicker>
-            </StackPanel>
+            </StackPanel>-->
             <Button x:Name="search_btn" Background="{DynamicResource Main_App_Color}" Margin="5" Content="Search" d:LayoutOverrides="Height" Click="Search_btn_Click"/>
+            <Label x:Name="Associated_Trace_File_label" Content="UTR File: "/>
         </StackPanel>
         <DataGrid x:Name="process_dg" HorizontalAlignment="Left" Height="430" Margin="290,10,0,0" VerticalAlignment="Top" Width="470" AutoGenerateColumns="False">
             <DataGrid.Columns>
