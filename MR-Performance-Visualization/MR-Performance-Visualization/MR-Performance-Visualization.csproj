@@ -217,8 +217,5 @@
     <Resource Include="Resources\Dark.jpg" />
     <Resource Include="Resources\Light.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Settings.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
