@@ -26,7 +26,9 @@ namespace MR_Performance_Visualization
         public SettingColorsUserControl()
         {
             InitializeComponent();
+
             currentColor = (Color)ColorConverter.ConvertFromString(Application.Current.Resources["Main_App_Color"].ToString());
+
             changeRGBValues(currentColor);
             changeSelectedColorView(currentColor);
         }
@@ -90,6 +92,8 @@ namespace MR_Performance_Visualization
         private void ApplyColor_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Resources["Main_App_Color"] = new SolidColorBrush(choosenColor);
+            Properties.Settings.Default.Main_App_Color = "#" + choosenColor.R.ToString("X2") + choosenColor.G.ToString("X2") + choosenColor.B.ToString("X2");
+            Properties.Settings.Default.Save();
         }
     }
 }
