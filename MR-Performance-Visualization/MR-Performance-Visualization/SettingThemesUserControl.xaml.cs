@@ -77,6 +77,14 @@ namespace MR_Performance_Visualization
             Application.Current.Resources["Main_Content_Color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF1E1E1E"));
             Application.Current.Resources["Main_Text_Color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("White"));
             Application.Current.Resources["Menu_Icon_Color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("LightGray"));
+
+            Properties.Settings.Default.Side_Bar_Color = "#FF3E3E42";
+            Properties.Settings.Default.Menu_Color = "#FF686868";
+            Properties.Settings.Default.Main_Content_Color = "#FF1E1E1E";
+            Properties.Settings.Default.Main_Text_Color = "White";
+            Properties.Settings.Default.Menu_Icon_Color = "LightGray";
+
+            Properties.Settings.Default.Save();
         }
 
         private void applyLightTheme()
@@ -86,6 +94,14 @@ namespace MR_Performance_Visualization
             Application.Current.Resources["Main_Content_Color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("White"));
             Application.Current.Resources["Main_Text_Color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Black"));
             Application.Current.Resources["Menu_Icon_Color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Gray"));
+
+            Properties.Settings.Default.Side_Bar_Color = "#FF222222";
+            Properties.Settings.Default.Menu_Color = "#FFEEEEEE";
+            Properties.Settings.Default.Main_Content_Color = "White";
+            Properties.Settings.Default.Main_Text_Color = "Black";
+            Properties.Settings.Default.Menu_Icon_Color = "Gray";
+
+            Properties.Settings.Default.Save();
         }
     }
 }

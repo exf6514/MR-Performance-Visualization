@@ -1,7 +1,42 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MR_Performance_Visualization.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Main_App_Color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="Side_Bar_Color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF222222</Value>
+    </Setting>
+    <Setting Name="Menu_Color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFEEEEEE</Value>
+    </Setting>
+    <Setting Name="Main_Content_Color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="Main_Text_Color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="Menu_Icon_Color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Gray</Value>
+    </Setting>
+    <Setting Name="Main_App_Font_Family" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Segoe UI</Value>
+    </Setting>
+    <Setting Name="Main_App_Font_Size_Smallest" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">7</Value>
+    </Setting>
+    <Setting Name="Main_App_Font_Size_Small" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="Main_App_Font_Size_Normal" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">12</Value>
+    </Setting>
+    <Setting Name="Main_App_Font_Size_Big" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">16</Value>
+    </Setting>
+    <Setting Name="Main_App_Font_Size_Biggest" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">26</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

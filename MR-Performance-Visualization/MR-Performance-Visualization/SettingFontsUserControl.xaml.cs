@@ -91,13 +91,22 @@ namespace MR_Performance_Visualization
         private void applyFont()
         {
             double normalFontSize = double.Parse(selectedFontSize.Substring(0, selectedFontSize.Length - 2));
-            Console.WriteLine(selectedFontFamily);
+
             Application.Current.Resources["Main_App_Font_Family"] = new FontFamily(selectedFontFamily);
             Application.Current.Resources["Main_App_Font_Size_Smallest"] = normalFontSize - 5;
             Application.Current.Resources["Main_App_Font_Size_Small"] = normalFontSize - 2;
             Application.Current.Resources["Main_App_Font_Size_Normal"] = normalFontSize;
             Application.Current.Resources["Main_App_Font_Size_Big"] = normalFontSize + 4;
             Application.Current.Resources["Main_App_Font_Size_Biggest"] = normalFontSize + 14;
+
+            Properties.Settings.Default.Main_App_Font_Family = selectedFontFamily;
+            Properties.Settings.Default.Main_App_Font_Size_Smallest = normalFontSize - 5;
+            Properties.Settings.Default.Main_App_Font_Size_Small = normalFontSize - 2;
+            Properties.Settings.Default.Main_App_Font_Size_Normal = normalFontSize;
+            Properties.Settings.Default.Main_App_Font_Size_Big = normalFontSize + 4;
+            Properties.Settings.Default.Main_App_Font_Size_Biggest = normalFontSize + 14;
+
+            Properties.Settings.Default.Save();
 
             currentFontFamily = selectedFontFamily;
             currentFontSize = selectedFontSize;
