@@ -23,7 +23,10 @@ namespace MR_Performance_Visualization
 
         public void initializeSettings()
         {
+            Color Main_App_Color_Opacity = (Color)ColorConverter.ConvertFromString(MR_Performance_Visualization.Properties.Settings.Default.Main_App_Color);
+            Color withOpacityChanged = Color.FromArgb(100, Main_App_Color_Opacity.R, Main_App_Color_Opacity.G, Main_App_Color_Opacity.B);
             Application.Current.Resources["Main_App_Color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(MR_Performance_Visualization.Properties.Settings.Default.Main_App_Color));
+            Application.Current.Resources["Main_App_Color_Opacity"] = new SolidColorBrush(withOpacityChanged);
             Application.Current.Resources["Main_App_Font_Family"] = new FontFamily(MR_Performance_Visualization.Properties.Settings.Default.Main_App_Font_Family);
             Application.Current.Resources["Main_App_Font_Size_Big"] = MR_Performance_Visualization.Properties.Settings.Default.Main_App_Font_Size_Big;
             Application.Current.Resources["Main_App_Font_Size_Biggest"] = MR_Performance_Visualization.Properties.Settings.Default.Main_App_Font_Size_Biggest;

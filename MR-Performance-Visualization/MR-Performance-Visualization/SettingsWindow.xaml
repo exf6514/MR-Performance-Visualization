@@ -55,9 +55,6 @@
                     </Grid>
                     <Grid Grid.Column="1" Background="{DynamicResource Menu_Color}">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,10,5" Grid.Column="1">
-                            <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="{DynamicResource Menu_Icon_Color}">
-                                <materialDesign:PackIcon Kind="HelpOutline"/>
-                            </Button>
                             <Button x:Name="CloseButton" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Margin="0" Foreground="Red" Click="CloseButton_Click">
                                 <materialDesign:PackIcon Kind="Close"/>
                             </Button>

@@ -15,7 +15,7 @@
                     <TextBlock TextAlignment="Center" Foreground="{DynamicResource Main_Text_Color}" VerticalAlignment="Center" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}">MRI Performance Visualizer</TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,10,5">
-                    <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="{DynamicResource Menu_Icon_Color}">
+                    <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="{DynamicResource Menu_Icon_Color}" Click="Help_Button_Click">
                         <materialDesign:PackIcon Kind="HelpOutline"/>
                     </Button>
                     <Button x:Name="Settings" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Foreground="{DynamicResource Menu_Icon_Color}" Click="Settings_Click">
@@ -33,7 +33,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
                         <!--When user selects files the button content will change into "Loading files ..."-->
                         <!--When files are loaded the button content will change into "Start"-->
-                        <Button x:Name="MainButton" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" VerticalAlignment="Center" Height="auto" Click="MainButton_Click">
+                        <Button x:Name="MainButton" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" VerticalAlignment="Center" Height="auto" Click="Load_files">
                             <Border BorderBrush="{DynamicResource Main_App_Color}" BorderThickness="1" CornerRadius="0">
                                 <StackPanel Orientation="Horizontal" Margin="15">
                                     <StackPanel Orientation="Horizontal" x:Name="ActionOne">
@@ -41,10 +41,6 @@
                                         <TextBlock HorizontalAlignment="Right" Foreground="{DynamicResource Main_Text_Color}" VerticalAlignment="Center" Text="Load Files" Margin="10 0 0 0" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"></TextBlock>
                                     </StackPanel>
                                     <TextBlock x:Name="ActionTwo" HorizontalAlignment="Right" Foreground="{DynamicResource Main_Text_Color}" VerticalAlignment="Center" Text="Loading files ..." Margin="0" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"></TextBlock>
-                                    <StackPanel Orientation="Horizontal" x:Name="ActionThree">
-                                        <TextBlock HorizontalAlignment="Right" Foreground="{DynamicResource Main_Text_Color}" VerticalAlignment="Center" Text="Start" FontSize="{DynamicResource Main_App_Font_Size_Normal}" FontFamily="{DynamicResource Main_App_Font_Family}"></TextBlock>
-                                        <materialDesign:PackIcon Kind="ArrowRight" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{DynamicResource Main_Text_Color}" Margin="5 0 0 0"/>
-                                    </StackPanel>
                                 </StackPanel>
                             </Border>
                         </Button>

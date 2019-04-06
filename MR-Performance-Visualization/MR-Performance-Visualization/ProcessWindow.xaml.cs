@@ -12,59 +12,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MR_Performance_Visualization
 {
     /// <summary>
-    /// Interaction logic for ProcessData.xaml
+    /// Interaction logic for ProcessWindow.xaml
     /// </summary>
-    public partial class ProcessData : UserControl
+    public partial class ProcessWindow : Window
     {
         TraceFileParserSingleton tfps = TraceFileParserSingleton.Instance;
+        public ChartValues<double> cpuValues { get; set; }
+        public ChartValues<double> hcValues { get; set; }
+        public ChartValues<double> privValues { get; set; }
+        public SeriesCollection ProcessCpu_SC { get; set; }
+        public SeriesCollection ProcessHc_SC { get; set; }
+        public SeriesCollection ProcessPriv_SC { get; set; }
+        public string[] Labels { get; set; }
 
-        public ProcessData()
+        public ProcessWindow(String pName)
         {
             InitializeComponent();
-
-            process_names_cb.Items.Insert(0, "Please select a process");
-            process_names_cb.SelectedIndex = 0;
-
-            List<string> names = tfps.ProcessNames;
-            if (names != null) //could be null if no data loaded yet
-            {
-                names.Sort();
-                foreach (string name in names)
-                {
-                    process_names_cb.Items.Add(name);
-                }
-            }
-
-            //check if they've searched before
-            if (tfps.LastProcessName != null)
-            {
-                int index = process_names_cb.Items.IndexOf(tfps.LastProcessName);
-                process_names_cb.SelectedIndex = index;
-                //get data for process
-                GetDataForProcess(tfps.LastProcessName);
-            }
+            Console.WriteLine("Looking for this process: " + pName);
+            GetDataForProcess(pName);
+            processName.Text = pName;
         }
-
-        private void Search_Button_Click(object sender, RoutedEventArgs e)
-        {
-            int index = process_names_cb.SelectedIndex;
-            if(index > 0)
-            {
-                string processName = process_names_cb.SelectedItem.ToString();
-
-                //set last searched for
-                tfps.LastProcessName = processName;
-
-                Console.WriteLine("Looking for this process: " + processName);
-                GetDataForProcess(processName);
-            }
-        }//search button clicked
 
         private void GetDataForProcess(string processName)
         {
@@ -72,9 +44,9 @@ namespace MR_Performance_Visualization
             {
                 List<Process> values = tfps.ProcessDictionary[processName];
 
-                ChartValues<double> cpuValues = new ChartValues<double>();
-                ChartValues<double> hcValues = new ChartValues<double>();
-                ChartValues<double> privValues = new ChartValues<double>();
+                cpuValues = new ChartValues<double>();
+                hcValues = new ChartValues<double>();
+                privValues = new ChartValues<double>();
 
 
                 //temp lists
@@ -134,9 +106,21 @@ namespace MR_Performance_Visualization
             DataContext = this;
         }
 
-        public SeriesCollection ProcessCpu_SC { get; set; }
-        public SeriesCollection ProcessHc_SC { get; set; }
-        public SeriesCollection ProcessPriv_SC { get; set; }
-        public string[] Labels { get; set; }
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            MenuController mc = new MenuController();
+            mc.Settings_Button_Click(this);
+        }
+
+        private void Help_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MenuController mc = new MenuController();
+            mc.Help_Button_Click(this);
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            MenuController.Close_Button_Click(this);
+        }
     }
 }

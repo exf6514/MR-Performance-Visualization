@@ -38,5 +38,11 @@
     <Setting Name="Main_App_Font_Size_Biggest" Type="System.Double" Scope="User">
       <Value Profile="(Default)">26</Value>
     </Setting>
+    <Setting Name="Main_App_Color_Opacity" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -36,10 +36,12 @@ namespace MR_Performance_Visualization
         public Dictionary<string, List<Process>> ProcessDictionary { get; set; } // name of process -> list of Process 'points' that contains ts, CPU, PRIV, and HC
         public string LastProcessName { get; set; }
         public string Filename { get; set; }
+        public string Filepath { get; set; }
 
         public void ParseTraceFile(string path, string _filename)
         {
             Console.WriteLine("Start reading");
+            Filepath = path;
             Filename = _filename;
             string[] lines = System.IO.File.ReadAllLines(path);
             Console.WriteLine("Read finished");

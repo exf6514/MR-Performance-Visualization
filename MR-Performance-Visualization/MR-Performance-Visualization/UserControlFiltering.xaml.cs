@@ -1,33 +1,38 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MR_Performance_Visualization
 {
     /// <summary>
-    /// Interaction logic for FilterDataWindow.xaml
+    /// Interaction logic for UserControlFiltering.xaml
     /// </summary>
-    public partial class FilterDataWindow : UserControl
+    public partial class UserControlFiltering : UserControl
     {
-        public FilterDataWindow()
+        TraceFileParserSingleton tfps = TraceFileParserSingleton.Instance;
+        public List<Process> filterProcesses { get; set; }
+        private string LastSearchString { get; set; } //the last search the user made. Used for results file
+
+        public UserControlFiltering()
         {
             InitializeComponent();
+            init();
+        }
 
+        public UserControlFiltering(String selectedProcessName)
+        {
+            InitializeComponent();
+            init();
+            int index = process_name_cb.Items.IndexOf(selectedProcessName);
+            process_name_cb.SelectedIndex = index;
+        }
+
+        private void init() {
             filterProcesses = new List<Process>();
 
             List<string> metrics = new List<string>(new string[] { "CPU", "HC", "PRIV" });
@@ -45,24 +50,19 @@ namespace MR_Performance_Visualization
             }
             comparator_cb.SelectedIndex = 0;
 
-
-            tfps = TraceFileParserSingleton.Instance;
-
             //if all the necessary data is available
-            if(tfps.ProcessNames != null && tfps.ProcessNames.Count > 0)
+            if (tfps.ProcessNames != null && tfps.ProcessNames.Count > 0)
             {
                 process_name_cb.Items.Insert(0, "Any Process");
-                foreach(string name in tfps.ProcessNames)
+                foreach (string name in tfps.ProcessNames)
                 {
                     process_name_cb.Items.Add(name);
                 }
                 process_name_cb.SelectedIndex = 0;
 
-                Associated_Trace_File_label.Text = tfps.Filename;
+                //Associated_Trace_File_label.Text = tfps.Filename;
             }
-
         }
-        private TraceFileParserSingleton tfps;
 
         private void Search_btn_Click(object sender, RoutedEventArgs e)
         {
@@ -170,8 +170,17 @@ namespace MR_Performance_Visualization
 
                 this.Cursor = Cursors.Arrow; //back to useable cursor
                 filterProcesses = filteredValues;
+
+                if (filterProcesses.Count > 0)
+                {
+                    noResults.Visibility = Visibility.Hidden;
+                }
+                else {
+                    noResults.Visibility = Visibility.Visible;
+                }
+
                 process_dg.ItemsSource = filterProcesses; //set data for table
-                Associated_Trace_File_label.Text = tfps.Filename;
+                //Associated_Trace_File_label.Text = tfps.Filename;
                 //store last searched query
                 LastSearchString = processName + "|" + metricName + "|" + comparator + "|" + searchValue;
             }
@@ -191,7 +200,7 @@ namespace MR_Performance_Visualization
                 string[] lines = File.ReadAllLines(filepath);
 
                 //populate the search items
-                Associated_Trace_File_label.Text = lines[0];
+                //Associated_Trace_File_label.Text = lines[0];
 
                 string[] queryParts = lines[1].Split('|'); // name, metric, comparator, value
 
@@ -279,8 +288,5 @@ namespace MR_Performance_Visualization
 
             }// if trace file name exists
         }
-
-        public List<Process> filterProcesses { get; set; }
-        private string LastSearchString { get; set; } //the last search the user made. Used for results file
     }
 }
