@@ -91,13 +91,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FilterDataWindow.xaml.cs">
-      <DependentUpon>FilterDataWindow.xaml</DependentUpon>
+    <Compile Include="HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MenuController.cs" />
+    <Compile Include="UserControlFiltering.xaml.cs">
+      <DependentUpon>UserControlFiltering.xaml</DependentUpon>
     </Compile>
     <Compile Include="GlobalProcess.cs" />
     <Compile Include="Process.cs" />
-    <Compile Include="ProcessData.xaml.cs">
-      <DependentUpon>ProcessData.xaml</DependentUpon>
+    <Compile Include="UserControlProcesses.xaml.cs">
+      <DependentUpon>UserControlProcesses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessWindow.xaml.cs">
+      <DependentUpon>ProcessWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingColorsUserControl.xaml.cs">
       <DependentUpon>SettingColorsUserControl.xaml</DependentUpon>
@@ -112,14 +119,18 @@
       <DependentUpon>SettingThemesUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="TraceFileParserSingleton.cs" />
-    <Compile Include="UserControlMemoryUsage.xaml.cs">
-      <DependentUpon>UserControlMemoryUsage.xaml</DependentUpon>
+    <Compile Include="UserControlGlobalProcesses.xaml.cs">
+      <DependentUpon>UserControlGlobalProcesses.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="FilterDataWindow.xaml">
+    <Page Include="HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlFiltering.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,7 +146,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ProcessData.xaml">
+    <Page Include="UserControlProcesses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProcessWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,11 +170,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Skins\TestDictionary.xaml">
+    <Page Include="Styles\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControlMemoryUsage.xaml">
+    <Page Include="UserControlGlobalProcesses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,15 +206,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\User Documentation.docx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="MRI_Performance_favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

@@ -92,7 +92,9 @@ namespace MR_Performance_Visualization
         private void ApplyColor_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Resources["Main_App_Color"] = new SolidColorBrush(choosenColor);
+            Application.Current.Resources["Main_App_Color_Opacity"] = new SolidColorBrush(Color.FromArgb(100, choosenColor.R, choosenColor.G, choosenColor.B));
             Properties.Settings.Default.Main_App_Color = "#" + choosenColor.R.ToString("X2") + choosenColor.G.ToString("X2") + choosenColor.B.ToString("X2");
+            Properties.Settings.Default.Main_App_Color_Opacity = "#" + choosenColor.R.ToString("X2") + choosenColor.G.ToString("X2") + choosenColor.B.ToString("X2");
             Properties.Settings.Default.Save();
         }
     }

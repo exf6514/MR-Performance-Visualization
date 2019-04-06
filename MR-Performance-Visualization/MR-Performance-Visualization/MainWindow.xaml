@@ -8,7 +8,7 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="MR Performance Visualizer" Height="600" Width="1024" WindowStartupLocation="CenterScreen" VerticalAlignment="Bottom" Padding="10" Grid.IsSharedSizeScope="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" WindowStyle="None" Background="White" ResizeMode="NoResize">
-    <Grid MouseDown="PowerGrid_MouseDown">
+    <Grid>
         <Grid Margin="250,51,0,0" Background="{DynamicResource Main_Content_Color}" x:Name="MainContentGrid"/>
 
         <Grid Width="250" HorizontalAlignment="Left" Background="{DynamicResource Side_Bar_Color}">
@@ -51,7 +51,7 @@
                     </Grid>
                     <Grid Grid.Column="1" Background="{DynamicResource Menu_Color}">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,10,5" Grid.Column="1">
-                            <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="{DynamicResource Menu_Icon_Color}">
+                            <Button Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="{DynamicResource Menu_Icon_Color}" Click="Help_Button_Click">
                                 <materialDesign:PackIcon Kind="HelpOutline"/>
                             </Button>
                             <Button x:Name="Settings_Button" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0"  Foreground="{DynamicResource Menu_Icon_Color}" Click="Settings_Button_Click" >
@@ -75,6 +75,7 @@
 
                                 <materialDesign:PackIcon Width="25" Height="24" Kind="AddCircle" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Button>
+                            <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="{DynamicResource Main_App_Font_Family}" FontSize="{DynamicResource Main_App_Font_Size_Normal}" Foreground="{DynamicResource Main_Text_Color}" FontWeight="Bold">Loaded File: <TextBlock x:Name="Associated_Trace_File_label" FontWeight="Normal"> NONE</TextBlock></TextBlock>
                         </StackPanel>
                     </Grid>
                 </Grid>

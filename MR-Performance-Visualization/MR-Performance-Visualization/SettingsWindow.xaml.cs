@@ -59,7 +59,7 @@ namespace MR_Performance_Visualization
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            MenuController.Close_Button_Click(this);
         }
     }
 }

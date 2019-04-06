@@ -21,90 +21,54 @@ namespace MR_Performance_Visualization
     /// </summary>
     public partial class WelcomeWindow : Window
     {
-        Utils utils = new Utils();
+        TraceFileParserSingleton tfps = TraceFileParserSingleton.Instance;
+        string filename;
+        string filepath;
 
         public WelcomeWindow()
         {
             InitializeComponent();
-            ActionOne.Visibility = Visibility.Collapsed;
+
             ActionTwo.Visibility = Visibility.Collapsed;
-            //ActionThree.Visibility = Visibility.Collapsed;
         }
 
-        private void PowerButton_Click(object sender, RoutedEventArgs e)
+        private void Load_files(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
-        }
-
-        private void MainButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(ActionOne.Visibility != Visibility.Collapsed)
-            {
-                LoadButton_Click(sender, e);
-                ActionOne.Visibility = Visibility.Collapsed;
-                ActionThree.Visibility = Visibility.Collapsed;
-                ActionTwo.Visibility = Visibility.Visible;
-                this.IsEnabled = false;
-            }
-
-            if (ActionThree.Visibility != Visibility.Collapsed)
-            {
-                MainWindow main = new MainWindow();
-                App.Current.MainWindow = main;
-                this.Close();
-                main.Show();
-            }
-        }
-
-        private void LoadButton_Click(object sender, RoutedEventArgs e)
-        {
-            //load trace file button has been clicked
-            //open the file browser dialog
+            //get files here
+            //send to user contorl memory usage
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.DefaultExt = ".utr";
-            ofd.RestoreDirectory = true; //opens the last opened directory
+            ofd.Filter = "Trace Files|*.utr";
+            ofd.Title = "Select a Trace File";
+            ofd.RestoreDirectory = true;
 
             if (ofd.ShowDialog() == true)
             {
-                //Get the name of specified file
-                string filename = ofd.FileName;
-                Console.WriteLine("Selected filename: " + filename);
-
-                //read contents of file into Stream
-                var fileStream = ofd.OpenFile();
-
-                using (StreamReader reader = new StreamReader(fileStream))
-                {
-                    //read contents
-                    //string fileContent = reader.ReadToEnd();
-                    //Console.WriteLine("File Contents: ");
-                    //Console.WriteLine(fileContent);
-
-                    string line;
-                    int lineCount = 0;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-
-                        if (lineCount > 0) //skip first line, its the "Format" one
-                        {
-                            //Console.WriteLine(line);
-                            string[] items = line.Split('|');
-                            items.ToList().ForEach(Console.WriteLine);
-                        }
-
-                        lineCount++;
-                    } // while line
-
-                }//using stream reader
-            }//dialog
+                ActionTwo.Visibility = Visibility.Visible;
+                ActionOne.Visibility = Visibility.Hidden;
+                filepath = ofd.FileName;
+                filename = ofd.SafeFileName;
+                tfps.ParseTraceFile(filepath, filename);
+                MainWindow mainWindow = new MainWindow();
+                this.Close();
+                mainWindow.Show();
+            }
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            SettingsWindow settingsWindow = new SettingsWindow();
-            utils.ApplyEffect(this);
-            settingsWindow.ShowDialog();
-            utils.ClearEffect(this);
+            MenuController mc = new MenuController();
+            mc.Settings_Button_Click(this);
+        }
+
+        private void Help_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MenuController mc = new MenuController();
+            mc.Help_Button_Click(this);
+        }
+
+        private void PowerButton_Click(object sender, RoutedEventArgs e)
+        {
+            MenuController.Power_Button_Click();
         }
     }
 }

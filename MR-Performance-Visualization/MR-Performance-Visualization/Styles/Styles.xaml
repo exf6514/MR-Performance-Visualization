@@ -4,6 +4,7 @@
                     xmlns:local="clr-namespace:MR_Performance_Visualization.Skins"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <SolidColorBrush x:Key="Main_App_Color" Color="HotPink"/>
+    <SolidColorBrush x:Key="Main_App_Color_Opacity" Color="HotPink" Opacity=".5"/>
     
     <SolidColorBrush x:Key="Side_Bar_Color" Color="#FF222222"/>
     <SolidColorBrush x:Key="Menu_Color" Color="#FFEEEEEE"/>
@@ -21,26 +22,5 @@
     <Style x:Key="Flat">
         <Setter Property="Control.Background" Value="{x:Null}" />
         <Setter Property="Control.BorderBrush" Value="{x:Null}" />
-    </Style>
-    <Style TargetType="DataGridCell" x:Key="ActiveCellStyle">
-        <Setter Property="Foreground" Value="{DynamicResource Main_Text_Color}"/>
-        <Setter Property="FontFamily" Value="{DynamicResource Main_App_Font_Family}"/>
-        <Setter Property="FontSize" Value="{DynamicResource Main_App_Font_Size_Small}"/>
-        <Setter Property="Padding" Value="5" />
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="{DynamicResource Main_App_Color}" />
-            </Trigger>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource Menu_Icon_Color}"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    <Style TargetType="DataGridColumnHeader" x:Key="HeaderStyle">
-        <Setter Property="Background" Value="{DynamicResource Main_Content_Color}"/>
-        <Setter Property="Foreground" Value="{DynamicResource Main_Text_Color}"/>
-        <Setter Property="FontFamily" Value="{DynamicResource Main_App_Font_Family}"/>
-        <Setter Property="FontSize" Value="{DynamicResource Main_App_Font_Size_Normal}"/>
-        <Setter Property="Padding" Value="5" />
     </Style>
 </ResourceDictionary>
