@@ -201,6 +201,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Release\MR-Performance-Visualization.exe.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -229,6 +230,10 @@
   <ItemGroup>
     <Resource Include="Resources\Dark.jpg" />
     <Resource Include="Resources\Light.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Release\MR-Performance-Visualization.exe" />
+    <Content Include="bin\Release\MR-Performance-Visualization.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
