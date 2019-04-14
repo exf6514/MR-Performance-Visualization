@@ -5,10 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+// Create a namespace
 namespace MR_Performance_Visualization
 {
+    /**
+    * Create a class that customizes effects
+    */
     class Utils
     {
+        /**
+        * Apply blur effect
+        * @param win of type Window
+        */
         public void ApplyEffect(Window win)
         {
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -16,6 +24,10 @@ namespace MR_Performance_Visualization
             win.Effect = objBlur;
         }
 
+        /**
+        * Removes blur effect
+        * @param win of type Window
+        */
         public void ClearEffect(Window win)
         {
             win.Effect = null;
